@@ -82,20 +82,6 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 	{
 		$type = $this->settingsService->getDisplayType();
 		
-		echo "(DISPLAYTYPE BEFORE: {$type})<br />";
-		
-		// Signal Slot
-		$this->signalSlotDispatcher->dispatch(
-			__CLASS__,
-			__FUNCTION__,
-			array(
-				'type' => &$type,
-			)
-		);
-		
-		echo "(DISPLAYTYPE AFTER: {$type})<br />";
-		
-		
 		switch($type)
 		{
 			case \MageDeveloper\Magelink\Service\SettingsService::PRODUCT_DISPLAY_TYPE_LIST:
