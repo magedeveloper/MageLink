@@ -64,13 +64,14 @@ class FrontendUserRepository extends \TYPO3\CMS\Extbase\Domain\Repository\Fronte
 	 * Finds an object matching the given identifier.
 	 *
 	 * @param int $email The email of the user
+	 * @param bool $onlyEnabled
 	 * @return object The matching object if found, otherwise NULL
 	 * @api
 	 */
-	public function findByEmail($email)
+	public function findByEmail($email, $onlyEnabled = true)
 	{
 		$query = $this->createQuery();
-		$query->getQuerySettings()->setIgnoreEnableFields(false);
+		$query->getQuerySettings()->setIgnoreEnableFields(!$onlyEnabled);
 		$query->getQuerySettings()->setRespectSysLanguage(false);
 		$query->getQuerySettings()->setRespectStoragePage(false);
 		

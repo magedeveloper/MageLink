@@ -533,6 +533,8 @@ class SettingsService
 		$configuration = $this->getConfiguration($path);
 		
 		$exploded = \MageDeveloper\Magelink\Utility\FilterString::getExplodedValues($configuration);
+		$exploded[] = "uid";
+		
 		return $exploded;
 	}
 

@@ -7,6 +7,12 @@
         <f:flashMessages renderMode="div" />
     </div>
     <f:if condition="{settings.display_logout_form_after_login}">
+        <f:if condition="{user.uid}">
+            <f:alias map="{feuser: '{m:feUser.findByUid(uid:\'{user.uid}\')}'}"> 
+                <f:comment>This gives the complete data of the user {feuser}</f:comment>
+            </f:alias>
+        </f:if>
+        
         <f:translate key="author" arguments="{0: user.name}">{f:translate(key: "logged_in_as")}</f:translate>
         <br />
         <f:link.action action="logout" class="button logout_button">{f:translate(key: "logout")}</f:link.action>
