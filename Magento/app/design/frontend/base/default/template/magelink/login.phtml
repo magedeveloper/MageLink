@@ -1,0 +1,29 @@
+<script type="text/javascript">
+	var baseUrl 			= '<?php echo $this->getBaseUrl(); ?>';
+	var skinUrl 			= '<?php echo $this->getSkinUrl(); ?>';
+	var ajaxPrepareUrl		= '<?php echo $this->getUrl("magelink/login/ajaxPrepare"); ?>';
+	var ajaxResponseUrl 	= '<?php echo Mage::helper("magelink")->getTYPO3AjaxResponseUrl(); ?>';
+	var loginEnabled		= <?php echo $this->isEnabled(); ?>;
+	
+	jQuery.noConflict();
+	jQuery(document).ready(function() {
+	
+		if (loginEnabled == true)
+		{
+			var initLogin = false;
+		
+		    /* login form listener */
+		    jQuery("form#login-form").on("submit", function(e)
+		    {
+		    	if (initLogin === false)
+		    	{
+					prepareLogin();
+					initLogin = true;
+				}
+				
+				e.preventDefault();
+		    });
+		}
+	    
+	});
+</script>

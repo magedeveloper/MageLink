@@ -1,0 +1,61 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <block_setting>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_block_settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.block_id>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_block_selection</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_checkout_cart_sidebar</numIndex>
+                                        <numIndex index="1">checkout_cart_sidebar</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_checkout_cart</numIndex>
+                                        <numIndex index="1">checkout_cart</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_sales_reorder_sidebar</numIndex>
+                                        <numIndex index="1">sales_reorder_sidebar</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_mini_search_form</numIndex>
+                                        <numIndex index="1">mini_search_form</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_wishlist_customer_sidebar</numIndex>
+                                        <numIndex index="1">wishlist_customer_sidebar</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_tag_popular</numIndex>
+                                        <numIndex index="1">tag_popular</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.block_id>
+                    
+                </el>
+            </ROOT>
+        </block_setting>
+
+
+    </sheets>
+</T3DataStructure> 
+
+
+

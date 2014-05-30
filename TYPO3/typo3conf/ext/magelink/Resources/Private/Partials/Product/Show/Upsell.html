@@ -1,0 +1,54 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<h2><f:translate key="interested_in_the_following_products" /></h2>
+
+<div class="upsell-product-grid">
+
+    <f:for each="{m:product.repositoryByIds(ids: '{product.upsellProductIds}', store: '{settings.store_view_code}', refreshAll: '0', onlyEnabled: '0')}" as="upsell_product" iteration="i">
+        <f:then>
+            <f:if condition="{i.index} < 4">
+                <f:then>
+                    <f:if condition="{upsell_product.hidden} == 0">
+                        <f:then>
+                            <div class="upsell-product">
+                                <div class="image">
+                                    <f:if condition="{upsell_product.image}">
+                                        <f:then>
+                                            <m:product.link product="{upsell_product}">
+                                                <f:image src="{upsell_product.image}" alt="{upsell_product.name}" title="{upsell_product.name}" width="150c" height="150c" />
+                                            </m:product.link>
+                                        </f:then>
+                                        <f:else>
+                                            <m:product.link product="{upsell_product}">
+                                                <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="150c" height="150c" />
+                                            </m:product.link>
+                                        </f:else>
+                                    </f:if>
+                                </div>
+                                <div class="name">
+                                    <m:product.link product="{upsell_product}">
+                                        {upsell_product.name}
+                                    </m:product.link>
+                                </div>
+                                <div class="pricebox">
+                                    <f:if condition="{upsell_product.specialPrice}">
+                                        <f:then>
+                                            <div class="special_price">
+                                                <div class="old_price"><f:format.currency currencySign="{upsell_product.currency}" decimalSeparator="," thousandsSeparator=".">{upsell_product.price}</f:format.currency></div>
+                                                <div class="price"><f:format.currency currencySign="{upsell_product.currency}" decimalSeparator="," thousandsSeparator=".">{upsell_product.specialPrice}</f:format.currency></div>
+                                            </div>
+                                        </f:then>
+                                        <f:else>
+                                            <div class="price"><f:format.currency currencySign="{upsell_product.currency}" decimalSeparator="," thousandsSeparator=".">{upsell_product.price}</f:format.currency></div>
+                                        </f:else>
+                                    </f:if>
+                                </div>
+                            </div>
+                        </f:then>
+                    </f:if>  
+                </f:then>
+            </f:if>
+        </f:then>
+    </f:for>
+
+</div>

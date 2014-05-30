@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-17T16:06:12Z" product-name="magelink">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_magelink_domain_model_product">
+				<source>Product</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.entity_id">
+				<source>Entity Id</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.sku">
+				<source>SKU</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.short_description">
+				<source>Short Description</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.special_price">
+				<source>Special Price</source>
+			</trans-unit>
+            <trans-unit id="tx_magelink_domain_model_product.final_price">
+                <source>Final Price</source>
+            </trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.qty">
+				<source>Stock Quantity</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.auto_refresh">
+				<source>Auto Refresh</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.is_disabled">
+				<source>Disabled</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.manage_stock">
+				<source>Manually manage stock</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.attributes">
+				<source>Attributes</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.store">
+				<source>Store</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.currency">
+				<source>Currency</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.attributes">
+				<source>Attribute Relation</source>
+			</trans-unit>
+
+			<trans-unit id="tx_magelink_domain_model_category">
+				<source>Category</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.entity_id">
+				<source>Entity Id</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.parent">
+				<source>Parent Category</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.sorting">
+				<source>Position</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.page_title">
+				<source>Page Title</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.image">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.url">
+				<source>URL</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.url_path">
+				<source>URL Path</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.product_count">
+				<source>Product Count</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.auto_refresh">
+				<source>Auto Refresh</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.is_active">
+				<source>Is Active</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.user_defined">
+				<source>User Defined</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.attributes">
+				<source>Attributes</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.store">
+				<source>Store</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.products">
+				<source>Products</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_magelink_domain_model_frontenduser.attributes">
+				<source>Attribute Relation</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_magelink_domain_model_productfilter">
+				<source>Productfilter</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.tags">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.categories">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.skus">
+				<source>SKUs</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.tags_and_categories">
+				<source>Tags and Categories</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.products">
+				<source>Products</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.store">
+				<source>Store</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_magelink_domain_model_attribute">
+				<source>Attribute</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_attribute.code">
+				<source>Attribute Code</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_attribute.value">
+				<source>Attribute Value</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_attribute.product">
+				<source>Product</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_magelink_domain_model_hash">
+				<source>Hash</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_hash.hash">
+				<source>Hash</source>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_hash.email">
+				<source>Email</source>
+			</trans-unit>			
+
+			<!-- Constants -->
+			<trans-unit id="constants.webservice" xml:space="preserve">
+				<source>Webservice Settings</source>
+			</trans-unit>
+			<trans-unit id="constants.developer" xml:space="preserve">
+				<source>Developer/Debug</source>
+			</trans-unit>
+			<trans-unit id="constants.redirect" xml:space="preserve">
+				<source>Redirect Settings</source>
+			</trans-unit>
+			<trans-unit id="constants.import" xml:space="preserve">
+				<source>Import Settings</source>
+			</trans-unit>
+			<trans-unit id="constants.login" xml:space="preserve">
+				<source>Login Settings</source>
+			</trans-unit>
+			<trans-unit id="constants.magento" xml:space="preserve">
+				<source>Magento Settings</source>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>

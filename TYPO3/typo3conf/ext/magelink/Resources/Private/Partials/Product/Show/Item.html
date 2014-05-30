@@ -1,0 +1,103 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<m:page.title mode="append">{product.name}</m:page.title>
+
+<div class="tx-magelink-product-show" id="product_{product.entityId}">
+    <h1>{product.name}</h1>
+    <hr />
+    <div class="details">
+        <div class="short_description">
+            <f:format.html>
+                {product.shortDescription}
+            </f:format.html>
+        </div>
+        <div class="description">
+            <f:format.html>
+                {product.description}
+            </f:format.html>
+        </div>
+    </div>
+    <div class="images">
+        <div class="main_image">
+            <f:if condition="{product.image}">
+                <f:then>
+                    <a href="{product.image}" class="productimage" target="_blank">
+                        <f:image src="{product.image}" alt="{product.name}" title="{product.name}" width="250m" height="320m" />
+                    </a>
+                </f:then>
+                <f:else>
+                    <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="250m" height="320m" />
+                </f:else>
+            </f:if>
+        </div>
+        <div class="additional_images">
+            <f:if condition="{product.qty} > 0">
+                <f:then>
+                    <ul>
+                        <f:for each="{product.media}" as="media" iteration="i">
+                            <li>
+                                <a href="{media}" class="productimage" target="_blank">
+                                    <f:image src="{media}" alt="{product.name}" title="{product.name}" width="45m" height="45m" />
+                                </a>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:then>
+            </f:if>
+        </div>
+
+    </div>
+
+    <form id="add" action="" method="post" class="tx-magelink-form">
+
+        <f:if condition="{product.type} == 'simple'">
+            <f:then>
+                <f:render partial="Product/Show/Type/Simple" arguments="{product:product}" />
+            </f:then>
+        </f:if>
+
+        <f:if condition="{product.type} == 'grouped'">
+            <f:then>
+                <div class="cart_actions">
+                    <f:render partial="Product/Show/Type/Grouped" arguments="{product:product}" />
+                </div>
+            </f:then>
+        </f:if>
+
+        <f:if condition="{product.type} == 'configurable'">
+            <f:then>
+                <div class="cart_actions">
+                    <f:render partial="Product/Show/Type/Configurable" arguments="{product:product}" />
+                </div>
+            </f:then>
+        </f:if>
+
+    </form>
+
+    <div class="clear"></div>
+
+    <f:render partial="Product/Show/Additional" arguments="{product:product}" />
+    
+    <f:if condition="{product.upsellProductIds}">
+        <f:render partial="Product/Show/Upsell" arguments="{product:product}" />
+    </f:if>
+
+    <div class="clear"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="clear"></div> 

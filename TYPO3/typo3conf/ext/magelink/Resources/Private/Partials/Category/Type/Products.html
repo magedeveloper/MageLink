@@ -1,0 +1,30 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:if condition="{settings.display_type} == 'LIST'">
+    <f:then>
+        <f:if condition="{products}">
+            <f:then>
+                <f:render partial="Product/List" arguments="{products:products}" />
+            </f:then>
+        </f:if>
+    </f:then>
+</f:if>
+<f:if condition="{settings.display_type} == 'GRID'">
+    <f:then>
+        <f:if condition="{products}">
+            <f:then>
+                <f:render partial="Product/Grid" arguments="{products:products}" />
+            </f:then>
+        </f:if>
+    </f:then>
+</f:if>
+<f:if condition="{settings.display_type} == 'INLINE'">
+    <f:then>
+        <f:if condition="{products}">
+            <f:then>
+                <f:render partial="Product/Inline" arguments="{products:products}" />
+            </f:then>
+        </f:if>
+    </f:then>
+</f:if>
+<div class="clear"></div>

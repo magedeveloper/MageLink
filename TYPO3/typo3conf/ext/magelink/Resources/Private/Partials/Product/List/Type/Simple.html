@@ -1,0 +1,42 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="cart_actions">
+    <div class="pricebox">
+        <f:translate key="your_price" />
+        <f:if condition="{product.specialPrice}">
+            <f:then>
+                <div class="special_price">
+                    <div class="old_price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>
+                    <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.finalPrice}</f:format.currency></div>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>
+            </f:else>
+        </f:if>
+    </div>
+    <f:translate key="add_to_cart" />
+    <form id="add" action="" method="post" class="tx-magelink-form">
+        <input type="text" class="tx_magelink_input_text" size="1" id="qty" name="qty" value="1" />
+        <button type="submit" class="tx_magelink_submit orange" id="tx_magelink_ajax_dispatcher_{product.entityId}" onClick="tx_magelink_ajax_addtocart({product.entityId})">
+            <f:image src="{f:uri.resource(path:'Images/add_to_cart.png')}" width="21" height="13" alt="{f:translate(key: 'add_to_cart')}" />
+        </button>
+    </form>
+    <div class="stock">
+        <f:if condition="{product.qty} > 0">
+            <f:then>
+                <f:if condition="{product.qty} < 15">
+                    <f:then>
+                        <f:translate key="in_stock" />: <div class="yellow">{product.qty}</div>
+                    </f:then>
+                    <f:else>
+                        <f:translate key="in_stock" />: <div class="green">{product.qty}</div>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:translate key="in_stock" />: <div class="red">{product.qty}</div>
+            </f:else>
+        </f:if>
+    </div>
+</div>    

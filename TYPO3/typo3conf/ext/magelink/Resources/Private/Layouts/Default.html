@@ -1,0 +1,36 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:if condition="{settings.cssFile}">
+    <f:format.raw>
+        <m:includeFile path="{settings.cssFile}" />
+    </f:format.raw>
+</f:if>
+<f:if condition="{settings.jsFile}">
+    <f:format.raw>
+        <m:includeFile path="{settings.jsFile}" />
+    </f:format.raw>
+</f:if>
+
+<f:format.raw>
+    <script type="text/javascript">
+        var magentoUrl = "{m:configuration(path: 'magento.magento_url')}";
+    </script>
+    <input type="hidden" name="magentoUrl" id="magentoUrl" value="{m:configuration(path: 'magento.magento_url')}" />
+</f:format.raw>
+
+<m:page.jsTranslation keys="could_not_add_product_to_cart,
+                            could_not_fetch_block,
+                            could_not_display_block,
+                            login_could_not_be_prepared,
+                            login_could_not_be_initialized,
+                            could_not_call_forgot_password_form,
+                            could_not_refresh_cart,
+                            could_not_retrieve_cart,
+                            could_not_remove_from_cart
+                           " 
+                      extension="Magelink" />
+
+<div class="tx-magelink">
+	<f:render section="main" />
+</div>
+

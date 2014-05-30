@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-17T16:06:12Z" product-name="magelink">
+		<header/>
+		<body>
+
+			<trans-unit id="entity_id.description">
+				<source>Magento Entity ID</source>
+			</trans-unit>
+			<trans-unit id="sku.description">
+				<source>SKU</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>Productname</source>
+			</trans-unit>
+			<trans-unit id="short_description.description">
+				<source>Short Description</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="image.description">
+				<source>Image</source>
+			</trans-unit>
+			<trans-unit id="price.description">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="special_price.description">
+				<source>Special Price</source>
+			</trans-unit>
+            <trans-unit id="final_price.description">
+                <source>Final Price</source>
+            </trans-unit>
+			<trans-unit id="qty.description">
+				<source>Stock Quantity</source>
+			</trans-unit>
+			<trans-unit id="auto_refresh.description">
+				<source>Auto Refresh Product</source>
+			</trans-unit>
+			<trans-unit id="is_disabled.description">
+				<source>Disabled</source>
+			</trans-unit>
+			<trans-unit id="manage_stock.description">
+				<source>Manually manage stock</source>
+			</trans-unit>
+			<trans-unit id="attributes.description">
+				<source>Merged Attributes</source>
+			</trans-unit>
+			<trans-unit id="store.description">
+				<source>Store Relation</source>
+			</trans-unit>
+			<trans-unit id="currency.description">
+				<source>Currency</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

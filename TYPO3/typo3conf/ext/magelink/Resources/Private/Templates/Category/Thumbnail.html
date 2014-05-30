@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <f:if condition="{categories -> f:count()} > 0">
+        <f:then>
+            <ul class="tx_magelink_category_thumbnail">
+                <f:for each="{categories}" as="category" iteration="i">
+                    <f:render partial="Category/Type/Thumbnail" arguments="{category:category}" />
+                </f:for>
+            </ul>
+            <div class="clear"></div>
+        </f:then>
+    </f:if>
+
+</f:section>

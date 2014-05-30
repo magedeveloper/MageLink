@@ -1,0 +1,75 @@
+<f:layout name="Default" />
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+<f:section name="main">
+    <div class="tx-magelink-cart">
+        <f:if condition="{cart.items}">
+            <f:then>
+                <table class="data-table cart-contents-table" id="cart-table">
+                    <colgroup>
+                        <col>
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Product Name</th>
+                        <th>Unit Price</th>
+                        <th>Qty</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <f:for each="{cart.items}" as="item" iteration="i">
+                        <f:then>
+                            <f:cycle values="{0: 'even', 1: 'odd'}" as="cycle">
+                                <f:if condition="{item.parentItemId} == ''">
+                                    <f:then>
+                                        <tr class="{cycle}">
+                                            <td></td>
+                                            <td>{item.name} {item.product.entityId}
+                                                <f:for each="{cart.items}" as="check">
+                                                    <f:then>
+                                                        <f:if condition="{item.id} == {check.parent_item_id}">
+                                                            <f:then>
+                                                                <br />
+
+                                                            </f:then>
+                                                        </f:if>
+                                                    </f:then>
+                                                </f:for>
+                                            </td>
+                                            <td>{item.price}</td>
+                                            <td>{item.qty}</td>
+                                            <td>{item.total}</td>
+                                            <td>
+                                                <button type="button" class="tx_magebride_remove_from_cart_button" id="tx_magelink_ajax_dispatcher" onClick="tx_magelink_ajax_removefromcart({item.productId})">
+                                                    <f:translate key="remove_from_cart">Remove</f:translate>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </f:then>
+                                </f:if>
+                            </f:cycle>
+                        </f:then>
+                    </f:for>
+                        <tr class="total">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td colspan="2">
+                                <f:format.currency currencySign="{cart.quote_currency_code}" decimalSeparator="," thousandsSeparator=".">{cart.subtotal_with_discount}</f:format.currency></div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </f:then>
+            <f:else>
+              <div class="message">
+                    <f:translate key="empty_cart" />
+                </div>
+            </f:else>
+        </f:if>
+    </div>
+</f:section>

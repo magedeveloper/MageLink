@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-17T16:06:12Z" product-name="magelink">
+		<header/>
+		<body>
+
+			<trans-unit id="code.description">
+				<source>Attribute Code</source>
+			</trans-unit>
+			<trans-unit id="value.description">
+				<source>Attribute Value</source>
+			</trans-unit>
+			<trans-unit id="product.description">
+				<source>Product</source>
+			</trans-unit>
+			
+			
+		</body>
+	</file>
+</xliff>

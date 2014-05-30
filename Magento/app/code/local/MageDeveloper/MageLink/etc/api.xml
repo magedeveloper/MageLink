@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <magelink_category translate="title" module="magelink">
+                <title>MageLink API Extension</title>
+                <model>magelink/category_api</model>
+                <acl>magelink/category</acl>
+                <methods>
+                    <fetch translate="title" module="magelink">
+                        <title>Retrieve a detailed list of categories</title>
+                        <acl>magelink/category/fetch</acl>
+                    </fetch>
+                    <detail translate="title" module="magelink">
+                        <title>Retrieve detailed information of a category</title>
+                        <acl>magelink/category/detail</acl>
+                    </detail>
+                </methods>
+            </magelink_category>
+            <magelink_product translate="title" module="magelink">
+                <title>MageLink API Extension</title>
+                <model>magelink/product_api</model>
+                <acl>magelink/product</acl>
+                <methods>
+                    <fetch translate="title" module="magelink">
+                        <title>Retrieve detailed product details</title>
+                        <acl>magelink/product/fetch</acl>
+                    </fetch>
+                    <filter translate="title" module="magelink">
+                        <title>Retrieve a filtered list of product ids</title>
+                        <acl>magelink/product/filter</acl>
+                    </filter>
+                    <items translate="title" module="magelink">
+                        <title>Retrieve a short list of all products</title>
+                        <acl>magelink/product/items</acl>
+                    </items>
+                </methods>
+            </magelink_product>
+            <magelink_customer translate="title" module="magelink">
+                <title>MageLink API Extension</title>
+                <model>magelink/customer_api</model>
+                <acl>magelink/customer</acl>
+                <methods>
+                    <fetch translate="title" module="magelink">
+                        <title>Retrieve detailed information about a customer</title>
+                        <acl>magelink/customer/fetch</acl>
+                    </fetch>
+                    <write translate="title" module="magelink">
+                        <title>Write information to a new or existing customer</title>
+                        <acl>magelink/customer/write</acl>
+                    </write>
+                </methods>
+            </magelink_customer>
+		</resources>
+        <resources_alias>
+            <category>magelink_category</category>
+            <product>magelink_product</product>
+            <customer>magelink_customer</customer>
+        </resources_alias>
+        <v2>
+            <resources_function_prefix>
+                <magelink>magelink</magelink>
+                <category>magelinkCategory</category>
+                <product>magelinkProduct</product>
+                <customer>magelinkCustomer</customer>
+            </resources_function_prefix>
+        </v2>
+        <acl>
+            <resources>
+                <magelink translate="title" module="magelink">
+                    <title>MageLink API Extension</title>
+                    <sort_order>1</sort_order>
+                    <category translate="title" module="magelink">
+                        <title>MageLink Category API Extension</title>
+                        <fetch translate="title" module="magelink">
+                            <title>Retrieve a detailed list of categories (fetch)</title>
+                        </fetch>
+                        <detail translate="title" module="magelink">
+                            <title>Retrieve detailed information of a category (detail)</title>
+                        </detail>
+                    </category>
+                    <product translate="title" module="magelink">
+                        <title>MageLink Product API Extension</title>
+                        <fetch translate="title" module="magelink">
+                            <title>Retrieve detailed product details (fetch)</title>
+                        </fetch>
+                        <filter translate="title" module="magelink">
+                            <title>Retrieve a filtered list of product ids (filter)</title>
+                        </filter>
+                        <items translate="title" module="magelink">
+                            <title>Retrieve a short list of all products</title>
+                        </items>
+                    </product>
+                    <customer translate="title" module="magelink">
+                        <title>MageLink Customer API Extension</title>
+                        <fetch translate="title" module="magelink">
+                            <title>Retrieve detailed information about a customer (fetch)</title>
+                        </fetch>
+                        <write translate="title" module="magelink">
+                            <title>Write information to a new or existing customer (write)</title>
+                        </write>
+                    </customer>
+                </magelink>
+            </resources>
+        </acl>
+    </api>
+</config>

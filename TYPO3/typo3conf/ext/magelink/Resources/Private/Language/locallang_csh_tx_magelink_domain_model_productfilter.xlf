@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-05-17T16:06:12Z" product-name="magelink">
+		<header/>
+		<body>
+
+			<trans-unit id="tags.description">
+				<source>Tags</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>Categories</source>
+			</trans-unit>
+			<trans-unit id="skus.description">
+				<source>SKUs</source>
+			</trans-unit>
+			<trans-unit id="tags_and_categories.description">
+				<source>Tags and Categories</source>
+			</trans-unit>			
+			<trans-unit id="products.description">
+				<source>Products</source>
+			</trans-unit>
+			<trans-unit id="store.description">
+				<source>Store</source>
+			</trans-unit>
+				
+		</body>
+	</file>
+</xliff>

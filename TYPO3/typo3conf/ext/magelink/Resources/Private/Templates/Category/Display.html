@@ -1,0 +1,43 @@
+<f:layout name="Default" />
+
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+    
+    <div class="tx-magelink-category-detail">
+        <div class="category_image">
+            <f:if condition="{category.image}">
+                <f:then>
+                    <a href="{category.image}" class="productimage" target="_blank">
+                        <f:image src="{category.image}" alt="{category.name}" title="{category.name}" width="150m" height="150m" />
+                    </a>
+                </f:then>
+                <f:else>
+                    <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="150m" height="150m" />
+                </f:else>
+            </f:if>
+        </div>
+        <div class="category_name">
+            <h1>{category.name}</h1>
+        </div>
+        <div class="category_description">
+        <f:if condition="{category.description}">
+            <f:then>
+                <f:format.html>
+                    Description: {category.description}
+                </f:format.html>
+            </f:then>
+        </f:if>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+
+
+</f:section>
+
+

@@ -1,0 +1,46 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="tx-magelink-product-grid-item">
+    <div class="image">
+        <f:if condition="{product.image}">
+            <f:then>
+                <m:product.link product="{product}">
+                    <f:image src="{product.image}" alt="{product.name}" title="{product.name}" width="188m" height="188m" />
+                </m:product.link>
+            </f:then>
+            <f:else>
+                <m:product.link product="{product}">
+                    <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="188m" height="188m" />
+                </m:product.link>
+            </f:else>
+        </f:if>
+    </div>
+
+    <div class="details">
+        <div class="name">
+            <h1>
+                <m:product.link product="{product}">
+                    {product.name}
+                </m:product.link>
+            </h1>
+        </div>
+    </div>
+
+    <f:if condition="{product.type} == 'configurable'">
+        <f:then>
+            <f:render partial="Product/Grid/Type/Configurable" arguments="{product:product}" />
+        </f:then>
+    </f:if>
+    <f:if condition="{product.type} == 'grouped'">
+        <f:then>
+            <f:render partial="Product/Grid/Type/Grouped" arguments="{product:product}" />
+        </f:then>
+    </f:if>
+    <f:if condition="{product.type} == 'simple'">
+        <f:then>
+            <f:render partial="Product/Grid/Type/Simple" arguments="{product:product}" />
+        </f:then>
+    </f:if>
+    
+    <div class="clear"></div>
+</div>

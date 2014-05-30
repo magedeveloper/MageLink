@@ -1,0 +1,33 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<h2><f:translate key="additional_information" /></h2>
+
+<div class="additional_information">
+    <f:if condition="{product.additionalAttributes}">
+        <f:then>
+            <table class="data-table additional-attributes-table" id="additional-product-table">
+                <colgroup>
+                    <col>
+                    <col>
+                </colgroup>
+                <tbody>
+                <f:for each="{product.additionalAttributes}" as="attribute">
+                    <f:then>
+                        <f:cycle values="{0: 'even', 1: 'odd'}" as="cycle">
+                            <tr class="{cycle}">
+                                <td class="attribute_label">{attribute.label}</td>
+                                <td class="attribute_value"><f:format.html>{attribute.value}</f:format.html></td>
+                            </tr>
+                        </f:cycle>
+                    </f:then>
+                </f:for>
+                </tbody>
+            </table>
+        </f:then>
+        <f:else>
+            <f:translate key="product_has_no_additional_information" />
+        </f:else>
+    </f:if>
+   
+
+</div>

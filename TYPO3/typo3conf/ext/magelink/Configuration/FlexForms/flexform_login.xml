@@ -1,0 +1,113 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <login_setting>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_login_settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.display_password_recovery_link>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_display_password_recovery_link</label>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.display_password_recovery_link>
+
+                    <settings.display_logout_form_after_login>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_display_logout_form_after_login</label>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.display_logout_form_after_login>
+
+                </el>
+            </ROOT>
+        </login_setting>
+
+        <redirect_setting>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_redirect_settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.info>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_redirect_settings_information</label>
+                            <config>
+                                <type>none</type>
+                                <size>50</size>
+                                <rows>4</rows>
+                                <default>IMPORTANT NOTE:
+
+                                    Leave these settings empty in order to disable redirect settings and let each sytem handle their normal login/logout procedures!
+
+                                    Error's will directly displayed by a popup/flash message.
+                                </default>
+                            </config>
+                        </TCEforms>
+                    </settings.info>
+                    
+                    <settings.redirect_after_successful_login>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_redirect_after_login</label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <show_thumbs>1</show_thumbs>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+                        </TCEforms>
+                    </settings.redirect_after_successful_login>
+
+                    <settings.redirect_after_logout>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_redirect_after_logout</label>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <show_thumbs>1</show_thumbs>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+                        </TCEforms>
+                    </settings.redirect_after_logout>
+                </el>
+            </ROOT>
+        </redirect_setting>
+       
+
+    </sheets>
+</T3DataStructure> 
+
+
+

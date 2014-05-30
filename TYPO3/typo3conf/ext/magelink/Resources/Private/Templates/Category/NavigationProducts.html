@@ -1,0 +1,46 @@
+<f:layout name="Default" />
+
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <f:if condition="{category}">
+        <f:then>
+            <div class="tx-magelink-category-navigation">
+                <h2>{category.name}</h2>
+
+                <m:category id="{category.parent}" store="{settings.store_view_code}" as="parent_category">
+                    <f:if condition="{parent_category.entityId}">
+                        <f:then>
+
+                            <f:if condition="{category.entityId} != {root_id}">
+                                <f:then>
+                                    <div class="parent_category">
+                                        <m:category.link category="{parent_category}" class="button">&laquo; {parent_category.name}</m:category.link>
+                                    </div>
+                                </f:then>
+                            </f:if>   
+                                    
+                        </f:then>
+                    </f:if>
+                </m:category>
+                
+                <ul>
+                    <f:render partial="Category/Type/ChildNavigation" arguments="{category:category}" />
+                </ul>
+            </div>
+            <f:if condition="{displayMode} == 'NAVPRODUCTS'">
+                <f:then>
+                    <div class="tx-magelink-category-navproducts">
+                        <f:render partial="Category/Type/Products" arguments="{products:products}" />
+                    </div>
+                </f:then>
+            </f:if>
+            
+        </f:then>
+    </f:if>
+</f:section>

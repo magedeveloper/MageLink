@@ -1,0 +1,28 @@
+<div class="tx-magelink-paginate">
+    <f:widget.paginate objects="{products}" as="paginatedProducts" configuration="{itemsPerPage: 12, insertAbove: 1, insertBelow: 1}">
+</div>
+
+<div class="tx-magelink-product-grid">
+    <ul>
+        <f:for each="{paginatedProducts}" as="product" iteration="i">
+            <f:cycle values="{0: 'first', 1: '', 2: '', 3: 'last', 4: ''}" as="rowClass">
+                <f:if condition="{product.specialPrice}">
+                    <f:then>
+                        <li class="product special {rowClass}">
+                    </f:then>
+                    <f:else>
+                        <li class="product {rowClass}">
+                    </f:else>
+                </f:if>
+            </f:cycle>
+
+            <f:render partial="Product/Grid/Item" arguments="{product:product}" />
+            </li>
+        </f:for>
+    </ul>
+</div>
+
+<div class="clear"></div>
+<div class="tx-magelink-paginate">
+    </f:widget.paginate>
+</div>

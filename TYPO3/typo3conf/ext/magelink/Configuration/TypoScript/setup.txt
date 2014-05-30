@@ -1,0 +1,145 @@
+ajax = PAGE
+ajax {
+	typeNum = 1337154991
+	10 < tt_content.list.20.magelink_loginform
+ 
+	config {
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:application/json
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+	}
+	
+    # Flexform
+    10 < styles.content.get 
+    10 { 
+      select.where = list_type='magelink_loginform' OR list_type='magelink_blockdisplay'
+    } 
+}
+
+plugin.tx_magelink {
+	
+	persistence {
+		storagePid = {$plugin.tx_magelink.persistence.storagePid}
+	}
+	
+	developer {
+	
+		cache_lifetime = {$plugin.tx_magelink.developer.cache_lifetime}
+		debug_mode = {$plugin.tx_magelink.developer.debug_mode}
+		
+	}
+	redirect {
+	
+		logout_target = {$plugin.tx_magelink.redirect.logout_target}
+		
+	}
+	import {
+	
+		std_address = {$plugin.tx_magelink.import.std_address}
+		store_view_code = {$plugin.tx_magelink.import.store_view_code}
+		image_import_path = {$plugin.tx_magelink.import.image_import_path}
+		price_import_field = {$plugin.tx_magelink.import.price_import_field}
+		user_source = {$plugin.tx_magelink.import.user_source}
+		default_user_group = {$plugin.tx_magelink.import.default_user_group}
+		
+	}
+	login {
+	
+		time_diff = {$plugin.tx_magelink.login.time_diff}
+		allowed_details = {$plugin.tx_magelink.login.allowed_details}
+		
+	}
+	webservice {
+		
+		api_username = {$plugin.tx_magelink.webservice.api_username}
+		api_key = {$plugin.tx_magelink.webservice.api_key}
+		encrypt_decrypt_key = {$plugin.tx_magelink.webservice.encrypt_decrypt_key}
+	
+	}	
+	magento {
+		
+		magento_url = {$plugin.tx_magelink.magento.magento_url}
+		magento_root_path = {$plugin.tx_magelink.magento.magento_root_path}
+		
+	}
+	view {
+		templateRootPath = {$plugin.tx_magelink.view.templateRootPath}
+		partialRootPath = {$plugin.tx_magelink.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_magelink.view.layoutRootPath}
+	}
+	
+	settings {
+		cssFile = {$plugin.tx_magelink.view.cssFile}
+		jsFile = {$plugin.tx_magelink.view.jsFile}
+	}
+	
+	features {
+		rewrittenPropertyMapper = 1
+	}
+}
+
+
+
+config.tx_extbase {
+	objects {
+		TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository {
+			className = MageDeveloper\Magelink\Domain\Repository\GlobalFrontendUserRepository
+		}
+	}
+	persistence {
+		classes {
+			TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
+				mapping {
+					tableName = fe_users
+					recordType = TYPO3\CMS\Extbase\Domain\Model\FrontendUser
+					columns {
+					}
+				}
+				subclasses {
+					MageDeveloper\Magelink\Domain\Model\FrontendUser = MageDeveloper\Magelink\Domain\Model\FrontendUser
+				}
+			}
+			MageDeveloper\Magelink\Domain\Model\FrontendUser {
+				mapping {
+					tableName = fe_users
+					#recordType = MageDeveloper\Magelink\Domain\Model\FrontendUser
+				}
+			}
+			
+			TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup {
+				mapping {
+					tableName = fe_groups
+					recordType = TYPO3\CMS\Extbase\Domain\Model\FrontendUserGroup
+					columns {
+					}
+				}
+				subclasses {
+					MageDeveloper\Magelink\Domain\Model\FrontendUserGroup = MageDeveloper\Magelink\Domain\Model\FrontendUserGroup
+				}
+			}
+			MageDeveloper\Magelink\Domain\Model\FrontendUserGroup {
+				mapping {
+					tableName = fe_groups
+					#recordType = MageDeveloper\Magelink\Domain\Model\FrontendUserGroup
+				}
+			}
+		}
+	}
+}
+
+plugin.tx_magelink._CSS_DEFAULT_STYLE (
+	.flash_messages ul {
+		margin:0;
+		padding:0;
+	}
+	.flash_messages ul li {
+		list-style-type:none;
+		padding:5px;
+		border:1px solid #c0c0c0;
+		background-color:#f2f2f2;
+		margin-bottom:5px;
+	}
+)

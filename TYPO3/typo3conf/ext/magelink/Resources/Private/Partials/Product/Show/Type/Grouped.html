@@ -1,0 +1,83 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="product_grouped">
+    <f:if condition="{product.type} == 'grouped'">
+        <f:then>
+            <div class="left">
+
+                <div class="grouped_products">
+
+                    <table class="data-table grouped-items-table" id="super-product-table">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col width="1">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th><f:translate key="tx_magelink_domain_model_product.name" /></th>
+                            <th><f:translate key="tx_magelink_domain_model_product.price" /></th>
+                            <th><f:translate key="specify_quantity" /></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <f:for each="{m:product.repositoryByIds(ids: '{product.associatedProductIds}', store: '{settings.store_view_code}', refreshAll: '{settings.always_load_from_soap}')}" as="associated_product">
+                            <f:then>
+                                <f:cycle values="{0: 'even', 1: 'odd'}" as="cycle">
+                                    <tr class="{cycle}">
+                                        <td class="image">
+                                            <f:if condition="{associated_product.image}">
+                                                <f:then>
+                                                    <a href="{associated_product.image}" class="productimage" target="_blank">
+                                                        <f:image src="{associated_product.image}" alt="{associated_product.name}" title="{associated_product.name}" maxWidth="50" maxHeight="50" />
+                                                    </a>
+                                                </f:then>
+                                                <f:else>
+                                                    <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" maxWidth="50" maxHeight="50" />
+                                                </f:else>
+                                            </f:if>
+                                        </td>
+                                        <td>
+                                            <m:product.link product="{associated_product}">{associated_product.name}</m:product.link>
+                                        </td>
+                                        <td><f:format.currency currencySign="{associated_product.currency}" decimalSeparator="," thousandsSeparator=".">{associated_product.finalPrice}</f:format.currency></td>
+                                        <td>
+                                            <input type="text" name="super_group[{associated_product.entityId}]" maxlength="12" value="{m:product.attribute(product: '{product}', attribute: 'associated_products', path: '{associated_product.entityId}.qty')}" title="Qty" class="tx_magelink_input_text" />
+                                        </td>
+                                    </tr>
+                                </f:cycle>
+                            </f:then>
+                        </f:for>
+                        
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <div class="right">
+                    <div class="add_to_cart">
+
+                        <f:alias map="{addcart: '<f:translate key=\'add_to_cart\' />'}">
+                            <p><f:translate key="please_choose_and_press" arguments="{0: addcart}" /></p>
+                        </f:alias>
+                    
+                        <div class="cart_buttons">
+                            <button type="submit" class="tx_magelink_submit" id="tx_magelink_ajax_dispatcher_{product.entityId}" onClick="tx_magelink_ajax_addtocart({product.entityId})">
+                                <f:translate key="add_to_cart" />
+                            </button>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </f:then>
+        <f:else>
+            {product.type} != grouped
+        </f:else>
+    </f:if>
+</div>

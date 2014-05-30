@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:{{var wsdl.name}}" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/"
+    name="{{var wsdl.name}}" targetNamespace="urn:{{var wsdl.name}}">
+    <types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Magento">
+            <import namespace="http://schemas.xmlsoap.org/soap/encoding/"
+                    schemaLocation="http://schemas.xmlsoap.org/soap/encoding/"/>
+		</schema>
+    </types>
+    <message name="magelinkCategoryFetchRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="store" type="xsd:string" />
+    </message>
+    <message name="magelinkCategoryFetchResponse">
+        <part name="encoded" type="xsd:string" />
+    </message>
+        <message name="magelinkCategoryDetailRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="category_id" type="xsd:string" />
+        <part name="store" type="xsd:string" />
+    </message>
+    <message name="magelinkCategoryDetailResponse">
+        <part name="encoded" type="xsd:string" />
+    </message>
+    <message name="magelinkProductFetchRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="product_id" type="xsd:string" />
+        <part name="store" type="xsd:string" />
+        <part name="productIdentifierType" type="xsd:string" />
+    </message>
+    <message name="magelinkProductFetchResponse">
+        <part name="encoded" type="xsd:string" />
+    </message>
+    <message name="magelinkProductFilterRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="tags" type="typens:ArrayOfString"/>
+        <part name="categories" type="typens:ArrayOfString"/>
+        <part name="skus" type="typens:ArrayOfString"/>
+        <part name="store" type="xsd:string" />
+    </message>    
+    <message name="magelinkProductFilterResponse">
+        <part name="product_ids" type="typens:ArrayOfString"/>
+    </message>
+    <message name="magelinkProductItemsRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="filters" type="typens:filters"/>
+        <part name="store" type="xsd:string" />
+    </message>
+    <message name="magelinkProductItemsResponse">
+        <part name="encoded" type="xsd:string" />
+    </message>
+    <message name="magelinkCustomerFetchRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="email" type="xsd:string" />
+    </message>
+    <message name="magelinkCustomerFetchResponse">
+        <part name="encoded" type="xsd:string" />
+    </message>
+    <message name="magelinkCustomerWriteRequest">
+        <part name="sessionId" type="xsd:string" />
+        <part name="data" type="typens:associativeArray"  />
+    </message>
+    <message name="magelinkCustomerWriteResponse">
+        <part name="customer_id" type="xsd:int" />
+    </message>
+	<portType name="{{var wsdl.handler}}PortType">
+        <operation name="magelinkCategoryFetch">
+            <documentation>Retrieve a detailed list of categories</documentation>
+            <input message="typens:magelinkCategoryFetchRequest" />
+            <output message="typens:magelinkCategoryFetchResponse" />
+        </operation>
+        <operation name="magelinkCategoryDetail">
+            <documentation>Retrieve detailed information of a category</documentation>
+            <input message="typens:magelinkCategoryDetailRequest" />
+            <output message="typens:magelinkCategoryDetailResponse" />
+        </operation>
+        <operation name="magelinkProductFetch">
+            <documentation>Retrieve a detailed list of categories</documentation>
+            <input message="typens:magelinkProductFetchRequest" />
+            <output message="typens:magelinkProductFetchResponse" />
+        </operation>
+        <operation name="magelinkProductFilter">
+            <documentation>Retrieve a filtered list of product ids</documentation>
+            <input message="typens:magelinkProductFilterRequest" />
+            <output message="typens:magelinkProductFilterResponse" />
+        </operation>
+        <operation name="magelinkProductItems">
+            <documentation>Retrieve a filtered list of product ids</documentation>
+            <input message="typens:magelinkProductItemsRequest" />
+            <output message="typens:magelinkProductItemsResponse" />
+        </operation>
+        <operation name="magelinkCustomerFetch">
+            <documentation>Retrieve a filtered list of product ids</documentation>
+            <input message="typens:magelinkCustomerFetchRequest" />
+            <output message="typens:magelinkCustomerFetchResponse" />
+        </operation>
+        <operation name="magelinkCustomerWrite">
+            <documentation>Retrieve a filtered list of product ids</documentation>
+            <input message="typens:magelinkCustomerWriteRequest" />
+            <output message="typens:magelinkCustomerWriteResponse" />
+        </operation>
+    </portType>
+	<binding name="{{var wsdl.handler}}Binding" type="typens:{{var wsdl.handler}}PortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+        <operation name="magelinkCategoryFetch">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkCategoryDetail">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkProductFetch">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkProductFilter">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkProductItems">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkCustomerFetch">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+        <operation name="magelinkCustomerWrite">
+            <soap:operation soapAction="urn:{{var wsdl.handler}}Action" />
+            <input>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </input>
+            <output>
+                <soap:body namespace="urn:{{var wsdl.name}}" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+            </output>
+        </operation>
+    </binding>    
+</definitions>

@@ -1,0 +1,61 @@
+<f:layout name="Default" />
+
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <f:if condition="{category}">
+        <f:then>
+
+            <m:category id="{category.parent}" store="{settings.store_view_code}" as="parent_category">
+                <f:if condition="{parent_category.entityId}">
+                    <f:then>
+                        <f:if condition="{category.entityId} != {root_id}">
+                            <f:then>
+                                <div class="parent_category">
+                                    <m:category.link category="{parent_category}" class="button">&laquo; {parent_category.name}</m:category.link>
+                                </div>
+                                <br />
+                            </f:then>
+                        </f:if>
+                    </f:then>
+                </f:if>
+            </m:category>
+
+            <f:if condition="{categories -> f:count()} > 0">
+                <f:then>
+                    <ul class="tx_magelink_category_thumbnail">
+                        <f:for each="{categories}" as="thumb_category" iteration="i">
+                            <f:render partial="Category/Type/Thumbnail" arguments="{category:thumb_category}" />
+                        </f:for>
+                    </ul>
+                    <div class="clear"></div>
+                </f:then>
+            </f:if>
+
+            <h1>{category.name}</h1>
+            
+            <f:if condition="{displayMode} == 'THUMBPRODUCTS'">
+                <f:then>
+                    <f:if condition="{products}">
+                        <f:then>
+                            <div class="tx-magelink-category-thumbproducts">
+                                <f:render partial="Category/Type/Products" arguments="{products:products}" />
+                            </div> 
+                        </f:then>
+                        <f:else>
+                            <f:translate key="category_empty" />
+                        </f:else>
+                    </f:if>
+                
+
+                </f:then>
+            </f:if>
+            
+        </f:then>
+    </f:if>
+</f:section>

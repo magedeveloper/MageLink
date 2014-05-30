@@ -1,0 +1,54 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:if condition="{product.specialPrice}">
+    <f:then>
+        <div class="tx-magelink-product-inline-item tx-magelink-product-inline-item-special">
+    </f:then>
+    <f:else>
+        <div class="tx-magelink-product-inline-item">
+    </f:else>
+</f:if>
+
+
+<div class="image">
+    <f:if condition="{product.image}">
+        <f:then>
+            <m:product.link product="{product}">
+                <f:image src="{product.image}" alt="{product.name}" title="{product.name}" width="50c" height="50c" />
+            </m:product.link>
+        </f:then>
+        <f:else>
+            <m:product.link product="{product}">
+                <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="50c" height="50c" />
+            </m:product.link>
+        </f:else>
+    </f:if>
+</div>
+
+<div class="details">
+    <div class="name">
+        <m:product.link product="{product}">
+            <f:format.crop maxCharacters="60" append="&nbsp;...">
+                {product.name}
+            </f:format.crop>
+        </m:product.link>
+    </div>
+</div>
+
+<f:if condition="{product.type} == 'configurable'">
+    <f:then>
+        <f:render partial="Product/Inline/Type/Configurable" arguments="{product:product}" />
+    </f:then>
+</f:if>
+<f:if condition="{product.type} == 'grouped'">
+    <f:then>
+        <f:render partial="Product/Inline/Type/Grouped" arguments="{product:product}" />
+    </f:then>
+</f:if>
+<f:if condition="{product.type} == 'simple'">
+    <f:then>
+        <f:render partial="Product/Inline/Type/Simple" arguments="{product:product}" />
+    </f:then>
+</f:if>
+
+</div>

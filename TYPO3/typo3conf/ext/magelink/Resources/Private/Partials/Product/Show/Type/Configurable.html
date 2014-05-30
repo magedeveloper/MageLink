@@ -1,0 +1,60 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="product_configurable">
+    <f:if condition="{product.type} == 'configurable'">
+        <f:then>
+            <div class="left">
+                <div class="product_options">
+                    <m:product.options product="{product}" />
+                </div>
+                
+                <div class="right">
+                    <div class="add_to_cart">
+                        <div class="pricebox">
+                            <f:translate key="your_price" />
+                            <f:if condition="{product.specialPrice}">
+                                <f:then>
+                                    <div class="special_price">
+                                        <!--<div class="old_price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>-->
+                                        <div class="price" id="price_{product.entityId}"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.finalPrice}</f:format.currency></div>
+                                    </div>
+                                </f:then>
+                                <f:else>
+                                    <div class="price" id="price_{product.entityId}"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>
+                                </f:else>
+                            </f:if>
+                        </div>
+                        <div class="cart_buttons">
+                            <input type="text" class="tx_magelink_input_text" size="1" id="qty" name="qty" value="1" />
+                            <button type="submit" class="tx_magelink_submit" id="tx_magelink_ajax_dispatcher_{product.entityId}" onClick="tx_magelink_ajax_addtocart({product.entityId})">
+                                <f:translate key="add_to_cart" />
+                            </button>
+                        </div>
+                        <div class="stock">
+                            <f:if condition="{product.qty} > 0">
+                                <f:then>
+                                    <f:if condition="{product.qty} < 15">
+                                        <f:then>
+                                            <f:translate key="in_stock" />: <div class="yellow">{product.qty}</div>
+                                        </f:then>
+                                        <f:else>
+                                            <f:translate key="in_stock" />: <div class="green">{product.qty}</div>
+                                        </f:else>
+                                    </f:if>
+                                </f:then>
+                                <f:else>
+                                    <f:translate key="in_stock" />: <div class="red">{product.qty}</div>
+                                </f:else>
+                            </f:if>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                
+            </div>
+        </f:then>
+        <f:else>
+            {product.type} != configurable
+        </f:else>
+    </f:if>
+</div>

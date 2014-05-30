@@ -1,0 +1,95 @@
+## Define custom categories
+# customsubcategory=webservice=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.webservice
+# customsubcategory=developer=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.developer
+# customsubcategory=login=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.login
+# customsubcategory=import=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.import
+# customsubcategory=redirect=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.redirect
+# customsubcategory=magento=LLL:EXT:magelink/Resources/Private/Language/locallang_db.xlf:constants.magento
+
+plugin.tx_magelink {
+
+	persistence {
+		# cat=plugin.tx_magelink//a; type=int+; label=Default storage PID
+		storagePid =
+	}
+
+	developer {
+	
+		# cat=plugin.tx_magelink/developer/200; type=user[EXT:magelink/Classes/Hooks/Constants.php:MageDeveloper\Magelink\Hooks\Constants->html]; label=Extension Information
+		html = SHOW / HIDE
+	
+		# cat=plugin.tx_magelink/developer/210; type=int+; label=Backend Cache Lifetime: Set the backend cache lifetime in seconds
+		cache_lifetime = 3600
+
+		# cat=plugin.tx_magelink/developer/220; type=boolean; label=Debug Mode: Enable for debug mode
+		#debug_mode = 
+		
+	}
+	redirect {
+	
+		# cat=plugin.tx_magelink/redirect/310; type=options[Magento,TYPO3,Current Logout Position]; label= Redirect location on global logout:Use this setting to set up the redirect location on logout in typo3
+		logout_target = TYPO3	
+
+	}
+	import {
+	
+		# cat=plugin.tx_magelink/import/010; type=options[Import Default Billing Address,Import Default Shipping Address]; label= Import Address: Please choose which address will be imported to the user
+		std_address = Import Default Billing Address
+
+		# cat=plugin.tx_magelink/import/020; type=string; label=Store View Code: Please enter the store view code that you want to use. Leave blank if you don't want to use store view codes or specify the store view code in the plugin settings.
+		store_view_code = 
+
+		# cat=plugin.tx_magelink/import/030; type=string; label=Image Import Filepath: Please enter the path, where the image files will be imported
+		image_import_path = uploads/tx_magelink/
+		
+		# cat=plugin.tx_magelink/import/050; type=options[Magento,TYPO3]; label= User Source: Define the user source for login user accounts
+		user_source = Magento
+		
+		# cat=plugin.tx_magelink/import/060; type=user[EXT:magelink/Classes/Hooks/Constants.php:MageDeveloper\Magelink\Hooks\Constants->usergroup]; label=Default Frontend User Group for imported users
+        default_user_group = 
+	
+	}
+	login {
+	
+		# cat=plugin.tx_magelink/login/010; type=string; label=Login Time Difference in seconds: Please enter the seconds of the allowed time difference between login request and response
+		time_diff = 45
+		
+		# cat=plugin.tx_magelink/login/020; type=string; label=Allowed user details for response: Please enter a comma separated list of the user detail fields that you want to allow for the Ajax Response. If you are not sure, leave these settings as they are.
+		allowed_details = address,city,company,country,email,fax,telephone,first_name,middle_name,last_name,name,title
+		
+	}
+	webservice {
+		
+  		# cat=plugin.tx_magelink/webservice/120; type=string; label=Magento SOAP Username: Username of the user that has Magento API access
+		api_username = 
+		
+		# cat=plugin.tx_magelink/webservice/130; type=string; label=Magento SOAP Key: Magento API Key
+		api_key = 	
+		
+		# cat=plugin.tx_magelink/webservice/140; type=string; label=Encryption/Decryption Key: Key that is used to encrypt/decrypt the connection data between TYPO3 and Magento. Please enter the same value in your Store Config in Magento!
+		encrypt_decrypt_key = m((=k.42/jnK)?##21.,--HH
+	
+	}	
+	magento {
+	
+		# cat=plugin.tx_magelink/magento/050; type=string; label=Magento URL: Frontend URL to your Magento Shop (e.g. http://www.yourshop.com/de/)
+    	magento_url = http://www.yourshop.de/de/
+    		
+		# cat=plugin.tx_magelink/magento/100; type=string; label=Magento Root Path: Absolute path to the Magento Root Directory if Magento is located on the same server as TYPO3. Leave blank to use Webservices!
+		magento_root_path = 
+	}
+	view {
+		# cat=plugin.tx_magelink/file/1; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:magelink/Resources/Private/Templates/
+		# cat=plugin.tx_magelink/file/2; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:magelink/Resources/Private/Partials/
+		# cat=plugin.tx_magelink/file/3; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:magelink/Resources/Private/Layouts/
+		# cat=plugin.tx_magelink/file/1; type=string; label=CSS File
+		cssFile = EXT:magelink/Resources/Public/Css/magelink.css
+		# cat=plugin.tx_magelink/file/1; type=string; label=JS File
+		jsFile = EXT:magelink/Resources/Public/Js/magelink.js
+	}
+	
+	
+}

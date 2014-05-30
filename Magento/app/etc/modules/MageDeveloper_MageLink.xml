@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<MageDeveloper_MageLink>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                <Mage_Customer />
+            </depends>
+		</MageDeveloper_MageLink>
+	</modules>
+</config>

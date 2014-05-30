@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<config>
+   <sections>
+		<magelink translate="label" module="magelink">
+            <tab>service</tab>
+            <label>MageLink</label>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <t3general translate="label" module="magelink">
+                    <label>Login Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>50</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <typo3_baseurl translate="label">
+                            <label>URL of the TYPO3 Login Site</label>
+							<comment>Please enter the full URL of the TYPO3 Login Site</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </typo3_baseurl>
+                        <decryption_key translate="label">
+                            <label>Shared Key for decryption</label>
+							<comment>Please enter the same key as used in TYPO3</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </decryption_key>
+                    </fields>
+                  </t3general>
+				  <t3import translate="label" module="magelink">
+                    <label>Import Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <customer_website translate="label">
+                            <label>Associated website on customer import</label>
+							<comment>Select the default website for imported customers</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_website</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </customer_website>
+                    </fields>
+                  </t3import>
+				  <login_settings translate="label" module="magelink">
+                    <label>Login Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>150</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Enable Single SignOn/Off Listener</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>0</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                  </login_settings>
+              </groups>
+          </magelink>
+    </sections>
+</config>

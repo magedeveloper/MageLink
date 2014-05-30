@@ -1,0 +1,38 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="cart_actions">
+    <div class="pricebox">
+        <f:translate key="your_price_starting_at" />
+        <f:if condition="{product.specialPrice}">
+            <f:then>
+                <div class="special_price">
+                    <div class="old_price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>
+                    <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.finalPrice}</f:format.currency></div>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.price}</f:format.currency></div>
+            </f:else>
+        </f:if>
+    </div>
+    <m:product.link product="{product}">
+        <f:translate key="configure_now" />
+    </m:product.link>
+    <div class="stock">
+        <f:if condition="{product.qty} > 0">
+            <f:then>
+                <f:if condition="{product.qty} < 15">
+                    <f:then>
+                        <f:translate key="in_stock" />: <div class="yellow">{product.qty}</div>
+                    </f:then>
+                    <f:else>
+                        <f:translate key="in_stock" />: <div class="green">{product.qty}</div>
+                    </f:else>
+                </f:if>
+            </f:then>
+            <f:else>
+                <f:translate key="in_stock" />: <div class="red">{product.qty}</div>
+            </f:else>
+        </f:if>
+    </div>
+</div>    

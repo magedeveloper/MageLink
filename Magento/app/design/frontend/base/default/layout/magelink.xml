@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+    	<reference name="head">
+    		<action method="addJs"><script>magelink/jquery-1.10.2.min.js</script></action>
+			<action method="addJs"><script>magelink/magelink.js</script></action>
+		</reference>
+	</default>
+	
+    <customer_account_login>
+        <reference name="content">
+            <block type="magelink/login" name="magelink_login" template="magelink/login.phtml" />
+        </reference>
+    </customer_account_login>
+    
+    <checkout_onepage_index>
+    	<reference name="content">
+            <block type="magelink/login" name="magelink_login" template="magelink/login.phtml" />
+    	</reference>
+    </checkout_onepage_index>
+
+</layout>

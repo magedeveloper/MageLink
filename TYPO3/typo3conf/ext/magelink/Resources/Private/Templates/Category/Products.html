@@ -1,0 +1,26 @@
+<f:layout name="Default" />
+
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <f:if condition="{category}">
+        <f:then>
+            
+            <h1>{category.name}</h1>
+        
+            <f:if condition="{displayMode} == 'PRODUCTS'">
+                <f:then>
+                    <div class="tx-magelink-category-products">
+                        <f:render partial="Category/Type/Products" arguments="{products:products}" />
+                    </div>
+                </f:then>
+            </f:if>
+
+        </f:then>
+    </f:if>
+</f:section>

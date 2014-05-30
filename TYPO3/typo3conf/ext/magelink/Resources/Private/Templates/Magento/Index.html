@@ -1,0 +1,83 @@
+<f:layout name="Default" />
+<f:section name="main">
+
+    {namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <m:link module="cms" controller="index">
+        CMS Index
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="customer" controller="account" action="logout">
+        Logout
+    </m:link>    
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="product" action="view" arguments="{id:16}">
+        Produkt (16) anzeigen
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="product" action="view" arguments="{id:17}">
+        Produkt (17) anzeigen
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="customer" controller="account" action="login">
+        Login anzeigen
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="checkout" controller="cart" action="index">
+        Warenkorb
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalogsearch" controller="advanced" action="index">
+        Erweiterte Suche
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="contacts" controller="index" action="index">
+        Kontaktformular
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="category" action="view" arguments="{id:18}">
+        Katalog (18)
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="category" action="view" arguments="{id:13}">
+        Katalog (10)
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="category" action="view" arguments="{id:15}">
+        Katalog (15)
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="catalog" controller="category" action="view" arguments="{id:99}">
+        Katalog (99)
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="customer" controller="account" action="create">
+        Registrierung
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="tag" controller="product" action="list" arguments="{tagId:27}">
+        Tags
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="review" controller="product" action="list" arguments="{uenc:'aHR0cDovL21hZ2VudG8ubWFnZWRldmVsb3Blci5kZS8jY3VycmVudA,,',product:17,id:17,cat_id:'',category:''}">
+        TESTLINK
+    </m:link>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <m:link module="customer" controller="account">
+        Account Dashboard
+    </m:link>    
+    <br /><br />
+
+    <hr />
+    <h1>Content:</h1>
+    
+    <f:format.raw>
+        {content}
+    </f:format.raw>
+    
+
+</f:section>

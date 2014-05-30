@@ -1,0 +1,21 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<li class="{class}">
+    <div class="image">
+        <f:if condition="{category.image}">
+            <f:then>
+                <m:category.link category="{category}">
+                    <f:image src="{category.image}" alt="{category.name}" title="{category.name}" width="100c" height="100c" />
+                </m:category.link>
+            </f:then>
+            <f:else>
+                <m:category.link category="{category}">
+                    <f:image src="EXT:magelink/Resources/Public/Images/no_selection.png" alt="" title="" width="100c" height="100c" />
+                </m:category.link>
+            </f:else>
+        </f:if>
+    </div>
+    <div class="name">
+        <m:category.link category="{category}">{category.name}</m:category.link>
+    </div>
+</li>

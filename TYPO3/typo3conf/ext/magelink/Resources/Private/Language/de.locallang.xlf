@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2013-05-17T16:06:12Z" product-name="magelink">
+		<header/>
+		<body>
+		
+			<!-- Wizard Items -->
+			<trans-unit id="wizarditem_magelink">
+    			<source>MageLink</source>
+    			<target>MageLink</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_product_integration">
+				<source>MageLink Product Integration</source>
+    			<target>MageLink Produkt Integration</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_product_integration_description">
+				<source>Select this element to integrate products from Magento to your site.</source>
+    			<target>Wählen Sie dieses Element um Produkte aus Magento in Ihre Webseite zu integrieren.</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_category_integration">
+                <source>MageLink Category Integration</source>
+    			<target>MageLink Kategorie Integration</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_category_integration_description">
+                <source>Select this element to integrate the Magento Category Structure into TYPO3.</source>
+    			<target>Wählen Sie dieses Element um die Kategoriestruktur aus Magento in Ihre Webseite zu integrieren.</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_cart_integration">
+                <source>MageLink Shopping Cart Integration</source>
+    			<target>MageLink Warekorb Integration</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_cart_integration_description">
+                <source>Select this element if you want to display the Magento Shopping Cart.</source>
+    			<target>Wählen Sie dieses Element um den Magento-Warenkorb einzufügen.</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_block_integration">
+                <source>MageLink Magento Block Integration</source>
+    			<target>MageLink Magento Block Integration</target>
+    		</trans-unit>
+			<trans-unit id="wizarditem_block_integration_description">
+                <source>Select this element to display a block from a pre-filled list of Magento's Blocks.</source>
+    			<target>Wählen Sie dieses Element um eine Auswahl von Magento Blöcken in Ihre Webseite zu integrieren.</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_single_sign_on">
+                <source>MageLink TYPO3/Magento Single SignOn</source>
+    			<target>MageLink TYPO3/Magento Single SignOn</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_single_sign_on_description">
+                <source>Select this element if you want to integrate a single sign-on login form to your site.</source>
+    			<target>Wählen Sie dieses Element um einen einheitlichen Login zwischen TYPO3 und Magento in Ihre Webseite zu integrieren.</target>
+    		</trans-unit>			
+			<trans-unit id="wizarditem_forgot_password">
+                <source>MageLink Forgot Password Form</source>
+    			<target>MageLink Passwort vergessen - Formular</target>
+    		</trans-unit>	
+			<trans-unit id="wizarditem_forgot_password_description">
+                <source>Select this element to integrate Magento's Forgot Password Form into your site.</source>
+    			<target>Wählen Sie dieses Element um das Magento - Password vergessen - Formular in Ihre Webseite zu integrieren.</target>
+    		</trans-unit>	
+			<trans-unit id="plugin_is_not_yet_configured">
+                <source>Plugin is not yet configured!</source>
+				<target>Plugin ist nicht nicht konfiguriert!</target>
+			</trans-unit>
+    		
+    		<!-- Flexforms Block Plugin -->
+			<trans-unit id="flexform_block_settings">
+                <source>Block Settings</source>
+				<target>Block Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="flexform_block_selection">
+                <source>Block Selection</source>
+				<target>Block Auswahl</target>
+			</trans-unit>
+			<trans-unit id="flexform_selection_checkout_cart_sidebar">
+                <source>Sidebar Cart Contents (checkout/cart_sidebar)</source>
+				<target>Seitenleiste Warenkorb Inhalte (checkout/cart_sidebar)</target>
+			</trans-unit>
+			<trans-unit id="flexform_selection_checkout_cart">
+                <source>Complete Cart (checkout/cart)</source>
+				<target>Warenkorb komplett (checkout/cart)</target>
+			</trans-unit>	 		   
+            <trans-unit id="flexform_selection_sales_reorder_sidebar">
+                <source>Sidebar Reorder (sales/reorder_sidebar)</source>
+				<target>Seitenleiste Wieder-Bestellung (sales/reorder_sidebar)</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_mini_search_form">
+                <source>Mini-Search Form</source>
+				<target>Kleines Suchformular</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_selection_wishlist_customer_sidebar">
+                <source>Sidebar Wishlist (wishlist/customer_sidebar)</source>
+				<target>Seitenleiste Wunschzettel (wishlist/customer_sidebar)</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_tag_popular">
+                <source>Popular Tags (tag/popular)</source>
+				<target>Populäre Tags (tag/popular)</target>
+			</trans-unit>
+            <trans-unit id="flexform_display_full_category_tree">
+                <source>Always display full category tree</source>
+                <target>Immer kompletten Kategoriebaum anzeigen</target>
+            </trans-unit>
+			
+			<!-- Flexforms Category Plugin -->	
+			<trans-unit id="flexform_category_display_settings">
+                <source>Category Display Settings</source>
+				<target>Kategorie Anzeigeeinstellungen</target>
+			</trans-unit>	 		   
+			<trans-unit id="flexform_category_root">
+                <source>Root Category</source>
+				<target>Anfangskategorie</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_root_display_mode">
+                <source>Root display mode</source>
+				<target>Beginnende Anzeigeart</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_continuing_display_mode">
+                <source>Continuing display mode</source>
+				<target>Weitere Anzeigeart</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_display_mode_category_information">
+                <source>Category Information</source>
+				<target>Kategorie Informationen</target>
+			</trans-unit>	
+			<trans-unit id="flexform_selection_display_mode_navigation">
+                <source>Navigation</source>
+				<target>Navigation</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_display_mode_sub_thumbnails">
+                <source>Sub-Categories Thumbnails</source>
+				<target>Thumbnails der Unterkategorien</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_selection_display_mode_sub_thumbproducts">
+                <source>Sub-Categories Thumbnails and Products</source>
+				<target>Thumbnails der Unterkategorien inkl. Produktanzeige</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_display_mode_navproducts">
+                <source>Navigation and Products</source>
+				<target>Navigation und Produktanzeige</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_display_mode_products">
+                <source>Only Products</source>
+				<target>Nur Produkte</target>
+			</trans-unit>	 		   
+			<trans-unit id="flexform_product_display_setting">
+                <source>Product Display Settings</source>
+				<target>Produktanzeige Einstellungen</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_allowed_products_information">
+                <source>Allowed Products for the Dynamic Detail View Listener - Information</source>
+				<target>Erlaubte Produkte für die dynamische Detailansicht - Informationen</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_allowed_products_information_note">
+                <source>IMPORTANT NOTE: If you change this setting, all navigation links will end at the TYPO3 Page. Products will then be displayed as selected.</source>
+                <target>IMPORTANT NOTE: If you change this setting, all navigation links will end at the TYPO3 Page. Products will then be displayed as selected.</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_display_type_products">
+                <source>Display Type for Products</source>
+				<target>Produktanzeige Einstellungen</target>
+			</trans-unit>	
+			<trans-unit id="flexform_selection_navigation_links_lead_to_magento">
+                <source>Navigation Links will lead to Magento</source>
+				<target>Navigationslinks leiten auf die Magento-Seite</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_list">
+                <source>List</source>
+				<target>Listenansicht</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_selection_grid">
+                <source>Grid</source>
+				<target>Rasteransicht</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_inline">
+                <source>Inline</source>
+				<target>Inline-Ansicht</target>
+			</trans-unit>	
+			<trans-unit id="flexform_selection_details">
+                <source>Details</source>
+				<target>Detailansicht</target>
+			</trans-unit>	
+			<trans-unit id="flexform_selection_dynamic">
+                <source>Dynamic Detail View Listener</source>
+				<target>Dynamische Detailansicht</target>
+			</trans-unit>
+			<trans-unit id="flexform_dynamic_detail_view_listener_page">
+                <source>Dynamic Detail View Listener Page</source>
+				<target>Seite der dynamischen Detailansicht</target>
+			</trans-unit>	 		   
+			<trans-unit id="flexform_load_settings">
+                <source>Load Settings</source>
+				<target>Sonstige Einstellungen</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_reload_webservice_on_page_load">
+                <source>Refresh all data from magento on page load</source>
+				<target>Neuladen von Magento bei Seitenaufruf</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_store_view_code">
+                <source>StoreView Code</source>
+				<target>StoreView Code</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_login_settings">
+                <source>Login Settings</source>
+				<target>Login Einstellungen</target>
+			</trans-unit>	
+			<trans-unit id="flexform_display_password_recovery_link">
+                <source>Display Password Recovery Link</source>
+				<target>Password vergessen - Link anzeigen</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_display_logout_form_after_login">
+                <source>Display Logout Form after successful login</source>
+				<target>Logout Formular anzeigen nach erfolgreichem Login</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_redirect_settings">
+                <source>Redirect Settings</source>
+				<target>Weiterleitungseinstellungen</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_redirect_settings_information">
+                <source>Redirect Settings - Information</source>
+				<target>Weiterleitungseinstellungen - Informationen</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_redirect_settings_information_note">
+                <source>IMPORTANT NOTE: Leave these settings empty in order to disable redirect settings and let each sytem handle their normal login/logout procedures! Error's will directly displayed by a popup/flash message.</source>
+                <target>IMPORTANT NOTE: Leave these settings empty in order to disable redirect settings and let each sytem handle their normal login/logout procedures! Error's will directly displayed by a popup/flash message.</target>
+			</trans-unit>	 		   
+			<trans-unit id="flexform_redirect_after_login">
+                <source>Redirect after successful login</source>
+				<target>Weiterleitung nach erfolgreichem Login</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_redirect_after_logout">
+                <source>Redirect after logout</source>
+				<target>Weiterleitung nach Logout</target>
+			</trans-unit>	 					
+			<trans-unit id="flexform_selection_no_selection_display_type">
+                <source>-- Please select a display type --</source>
+				<target>-- Bitte wählen Sie eine Anzeigeart --</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_allowed_products_information">
+                <source>Allowed Products for the Dynamic Detail View Listener - Information</source>
+				<target>Erlaubte Produkte für die dynamische Detailansicht - Informationen</target>
+			</trans-unit>
+			<trans-unit id="flexform_allowed_products_information_note">
+                <source>IMPORTANT NOTE: Use the following settings to select the products which shall be allowed with this Dynamic Detail View Listener. If you don't select any products, every product will work with the Dynamic Detail View!</source>
+                <target>IMPORTANT NOTE: Use the following settings to select the products which shall be allowed with this Dynamic Detail View Listener. If you don't select any products, every product will work with the Dynamic Detail View!</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_product_source">
+                <source>Product Source Setting</source>
+				<target>Produktquelle Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="flexform_selection_product_source_no_selection">
+                <source>-- Please select a product source --</source>
+				<target>-- Bitte wählen Sie eine Produktquelle --</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_product_source_manual_selection">
+                <source>Manual product selection</source>
+				<target>Manuelle Produktauswahl</target>
+			</trans-unit>
+			<trans-unit id="flexform_selection_product_source_category">
+                <source>Single category selection</source>
+				<target>Einzelne Kategorieauswahl</target>
+			</trans-unit>	 		
+			<trans-unit id="flexform_selection_product_source_filters">
+                <source>Filters</source>
+				<target>Filter</target>
+			</trans-unit>
+            <trans-unit id="flexform_selection_product_source_navigation">
+                <source>Navigation Plugin (dynamic)</source>
+                <target>Navigationsplugin (dynamisch)</target>
+            </trans-unit>
+			<trans-unit id="flexform_tags">
+                <source>Tags (Comma separated)</source>
+				<target>Tags (Kommagetrennt)</target>
+			</trans-unit>
+			<trans-unit id="flexform_category_names">
+                <source>Category Names (Comma separated)</source>
+				<target>Kategorienamen (Kommagetrennt)</target>
+			</trans-unit>
+			<trans-unit id="flexform_skus">
+                <source>SKUs (Comma separated)</source>
+				<target>SKUs (Kommagetrennt)</target>
+			</trans-unit>
+			<trans-unit id="flexform_no_selection">
+                <source>No selection</source>
+				<target>Keine Auswahl</target>
+			</trans-unit>
+			<trans-unit id="flexform_ids">
+                <source>Id(s)</source>
+				<target>Id(s)</target>
+			</trans-unit>
+			<trans-unit id="flexform_user_source">
+                <source>User Source</source>
+				<target>Benutzerquelle</target>
+			</trans-unit>
+            <trans-unit id="flexform_dynamic_detail_redirect">
+                <source>Redirect on empty parameters</source>
+                <target>Weiterleitung bei leeren Parametern</target>
+            </trans-unit>
+            <trans-unit id="flexform_dynamic_detail_redirect_error_code">
+                <source>Redirect HTTP Error Code on empty parameters</source>
+                <target>HTTP Error Code für Weiterleitung</target>
+            </trans-unit>
+            <trans-unit id="using_global_configuration">
+                <source>Using global configuration</source>
+                <target>Benutze globale Konfiguration</target>
+            </trans-unit>
+			
+
+            <!-- General Translations -->
+			<trans-unit id="add_to_cart">
+                <source>Add to cart</source>
+                <target>In Warenkorb</target>
+			</trans-unit>
+			<trans-unit id="remove_from_cart">
+                <source>Remove from cart</source>
+                <target>Aus Warenkorb entfernen</target>
+			</trans-unit>
+			<trans-unit id="your_price">
+                <source>Your Price</source>
+                <target>Ihr Preis</target>
+			</trans-unit>
+			<trans-unit id="your_price_starting_at">
+                <source>Your Price starting at</source>
+                <target>Ihr Preis beginnend ab</target>
+			</trans-unit>
+			<trans-unit id="in_stock">
+                <source>In Stock</source>
+                <target>Auf Lager</target>
+			</trans-unit>
+			<trans-unit id="additional_information">
+                <source>Additional Information</source>
+                <target>Zusätzliche Informationen</target>
+			</trans-unit>	
+			<trans-unit id="interested_in_the_following_products">
+                <source>You may also be interested in the following product(s)</source>
+                <target>Diese Produkte könnten auch für Sie interessant sein</target>
+			</trans-unit>	
+			<trans-unit id="empty_cart">
+                <source>Your cart is empty!</source>
+                <target>Der Warenkorb ist leer!</target>
+			</trans-unit>	
+			<trans-unit id="configure_now">
+                <source>Configure now!</source>
+                <target>Jetzt konfigurieren!</target>
+			</trans-unit>	
+			<trans-unit id="specify_quantity">
+                <source>Specify quantity</source>
+                <target>Anzahl auswählen</target>
+			</trans-unit>	
+			<trans-unit id="specify_quantity_of_products">
+                <source>Specify quantity of products</source>
+                <target>Anzahl der Produkte auswählen</target>
+			</trans-unit>	
+			<trans-unit id="category_empty">
+                <source>The category is empty!</source>
+				<target>Es befinden sich keine Produkte in dieser Kategorie!</target>
+			</trans-unit>
+            <trans-unit id="please_choose_and_press">
+                <source>Please choose your desired products and press "%s"</source>
+                <target>Bitte wählen Sie die gewünschten Produkte und drucken Sie auf "%s"</target>
+            </trans-unit>
+
+            <!-- Login Translations -->
+			<trans-unit id="login_failed">
+                <source>Login failed!</source>
+                <target>Login fehlgeschlagen!</target>
+			</trans-unit>			
+			<trans-unit id="login_failed_check_credentials">
+                <source>Login failed! Please check your credentials.</source>
+                <target>Login fehlgeschlagen! Bitte überprüfen Sie Ihre Anmeldedaten.</target>
+			</trans-unit>
+			<trans-unit id="user_inactive_try_again">
+                <source>User is inactive! Please try again.</source>
+                <target>Benutzer inaktiv. Bitte versuchen Sie es nochmal.</target>
+			</trans-unit>
+			<trans-unit id="try_again">
+                <source>Try again</source>
+                <target>Nochmal versuchen</target>
+			</trans-unit>
+			<trans-unit id="hash_comparison_failed">
+                <source>Hash comparison failed!</source>
+                <target>Hash Vergleich fehlgeschlagen!</target>
+			</trans-unit>	
+			<trans-unit id="error_creating_hash">
+                <source>Error creating the login hash!</source>
+                <target>Fehler! Hash konnte nicht erstellt werden!</target>
+			</trans-unit>		
+			<trans-unit id="error_importing_user">
+                <source>Error importing user details!</source>
+                <target>Fehler! Benutzerdaten konnten nicht abgerufen werden!</target>
+			</trans-unit>	
+			<trans-unit id="error_exporting_user">
+                <source>Error exporting user details!</source>
+                <target>Fehler! Benutzerdaten konnten nicht abgerufen werden!</target>
+			</trans-unit>	
+			<trans-unit id="unknown_error">
+                <source>Unknown error!</source>
+                <target>Unbekannter Fehler!</target>
+			</trans-unit>		
+			<trans-unit id="preparing_login">
+                <source>Preparing login ...</source>
+                <target>Login wird vorbereitet ...</target>
+			</trans-unit>		
+			<trans-unit id="calling_shop_login">
+                <source>Calling Shop Login ...</source>
+                <target>Initiiere Shop-Login ...</target>
+			</trans-unit>	
+			<trans-unit id="response_broken">
+                <source>Response broken! Please try again.</source>
+                <target>Antwort fehlerhaft. Bitte versuchen Sie es nochmal.</target>
+			</trans-unit>
+			<trans-unit id="login_failed_timeout">
+                <source>Login failed due timeout!</source>
+                <target>Login fehlgeschlagen! Timeout.</target>
+			</trans-unit>	
+			<trans-unit id="login">
+                <source>Login</source>
+                <target>Login</target>
+			</trans-unit>	
+			<trans-unit id="logout">
+                <source>Logout</source>
+                <target>Logout</target>
+			</trans-unit>	
+			<trans-unit id="evaluating_response">
+                <source>Evaluating response ...</source>
+                <target>Überprüfe Antwort ...</target>
+			</trans-unit>	
+			<trans-unit id="logged_in_as">
+                <source>You are logged in as %s</source>
+                <target>Sie sind eingeloggt als %s</target>
+			</trans-unit>
+			<trans-unit id="forgot_password">
+                <source>Forgot password?</source>
+                <target>Passwort vergessen?</target>
+			</trans-unit>
+			<trans-unit id="back">
+                <source>Back</source>
+                <target>Zurück</target>
+			</trans-unit>
+			<trans-unit id="send">
+                <source>Send</source>
+                <target>Absenden</target>
+			</trans-unit>	
+			<trans-unit id="please_wait">
+                <source>Please wait ...</source>
+                <target>Bitte warten ...</target>
+			</trans-unit>	
+			<trans-unit id="email">
+                <source>E-Mail Address</source>
+                <target>E-Mail Adresse</target>
+			</trans-unit>	
+			<trans-unit id="password">
+                <source>Password</source>
+                <target>Passwort</target>
+			</trans-unit>	
+			
+			
+			
+			<!-- Cart Translations -->
+			<trans-unit id="refreshing_cart">
+                <source>Refreshing cart ...</source>
+                <target>Warenkorb wird aktualisiert ...</target>
+			</trans-unit>				
+			<trans-unit id="removing_product_from_cart">
+                <source>Removing product from cart ...</source>
+                <target>Produkt wird aus Warenkorb entfernt ...</target>
+			</trans-unit>			
+			
+			<trans-unit id="tx_magelink_domain_model_product">
+                <source>Product Entity</source>
+                <target>Produkt Objekt</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.entity_id">
+                <source>Magento Entity ID</source>
+                <target>Magento Entity ID</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.sku">
+                <source>SKU</source>
+                <target>SKU</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.name">
+                <source>Productname</source>
+                <target>Produktname</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.short_description">
+                <source>Short Description</source>
+                <target>Kurzbeschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.description">
+                <source>Description</source>
+                <target>Beschreibung</target>
+			</trans-unit>
+            <trans-unit id="tx_magelink_domain_model_product.image">
+                <source>Image</source>
+                <target>Bild</target>
+            </trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.price">
+                <source>Price</source>
+                <target>Preis</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.special_price">
+                <source>Special Price</source>
+                <target>Sonderpreis</target>
+			</trans-unit>
+            <trans-unit id="tx_magelink_domain_model_product.final_price">
+                <source>Final Price</source>
+                <target>Endpreis</target>
+            </trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.qty">
+                <source>Stock Quantity</source>
+                <target>Lagerbestand</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.auto_refresh">
+                <source>Auto Refresh Product</source>
+                <target>Automatische Aktualisierung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.is_disabled">
+                <source>Disabled</source>
+                <target>Deaktiviert</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.manage_stock">
+                <source>Manually manage stock</source>
+                <target>Manuelle Lagerbestandverwaltung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.attributes">
+                <source>Merged Attributes</source>
+                <target>Zusammengefasste Attribute</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.store">
+                <source>Store Relation</source>
+                <target>Store Beziehung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_product.currency">
+                <source>Currency</source>
+                <target>Währung</target>
+			</trans-unit>		
+			
+			<trans-unit id="tx_magelink_domain_model_productfilter">
+                <source>Productfilter</source>
+                <target>Produktfilter</target>
+			</trans-unit>		
+			<trans-unit id="tx_magelink_domain_model_productfilter.tags">
+                <source>Tags</source>
+                <target>Tags</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.categories">
+                <source>Categories</source>
+                <target>Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.skus">
+                <source>SKUs</source>
+                <target>SKUs</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.tags_and_categories">
+                <source>Tags and Categories</source>
+                <target>Tags und Kategorien</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.products">
+                <source>Products</source>
+                <target>Produkte</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_productfilter.store">
+                <source>Store</source>
+                <target>Store</target>
+			</trans-unit>	
+			
+			<trans-unit id="tx_magelink_domain_model_attribute">
+                <source>Attribute</source>
+                <target>Attribut</target>
+			</trans-unit>		
+			<trans-unit id="tx_magelink_domain_model_attribute.code">
+                <source>Attribute Code</source>
+                <target>Attributcode</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_attribute.value">
+                <source>Attribute Value</source>
+                <target>Attributwert</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_attribute.product">
+                <source>Product</source>
+                <target>Produkt</target>
+			</trans-unit>						
+			
+			<trans-unit id="tx_magelink_domain_model_category">
+                <source>Category Entity</source>
+                <target>Kategorie Objekt</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.entity_id">
+                <source>Magento Entity ID</source>
+                <target>Magento Entity ID</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.parent">
+                <source>Parent Category</source>
+                <target>Vorige Kategorie</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.sorting">
+                <source>Position</source>
+                <target>Position</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.name">
+                <source>Categoryname</source>
+                <target>Kategoriename</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.description">
+                <source>Category Description</source>
+                <target>Kategorie Beschreibung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.page_title">
+                <source>Page Title</source>
+                <target>Seitentitel</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.image">
+                <source>Image</source>
+                <target>Bild</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.url">
+                <source>URL</source>
+                <target>URL</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.url_path">
+                <source>URL Path</source>
+                <target>URL Pfad</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.product_count">
+                <source>Product Count</source>
+                <target>Anzahl Produkte</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.auto_refresh">
+                <source>Auto Refresh Category</source>
+                <target>Automatische Aktualisierung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.is_active">
+                <source>Is Active</source>
+                <target>Aktiv</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.user_defined">
+                <source>Category is user defined</source>
+                <target>Benutzerdefiniert</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.attributes">
+                <source>Merged Attributes</source>
+                <target>Zusammengeführte Attribute</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.store">
+                <source>Store Relation</source>
+                <target>Store Beziehung</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_category.products">
+                <source>Category Product Relation</source>
+                <target>Kategorie-Produkt Beziehung</target>
+			</trans-unit>
+
+			<trans-unit id="tx_magelink_domain_model_hash">
+                <source>Hash</source>
+                <target>Hash</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_hash.hash">
+                <source>Hash</source>
+                <target>Hash</target>
+			</trans-unit>
+			<trans-unit id="tx_magelink_domain_model_hash.email">
+                <source>Email</source>
+                <target>E-Mail</target>
+			</trans-unit>
+
+			<trans-unit id="magelink_default">
+				<source>MageLink Default Settings</source>
+    			<target>MageLink Standard Einstellungen</target>
+    		</trans-unit>
+
+            <trans-unit id="product_has_no_additional_information">
+                <source>Product has no additional information</source>
+                <target>Produkt hat keine zusätzlichen Informationen</target>
+            </trans-unit>
+            <trans-unit id="could_not_add_product_to_cart">
+                <source>Could not add product to cart!</source>
+                <target>Produkt konnte nicht in den Warenkorb gelegt werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_fetch_block">
+                <source>Could not fetch block!</source>
+                <target>Block konnte nicht geladen werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_display_block">
+                <source>Could not display block!</source>
+                <target>Block kann nicht angezeigt werden!</target>
+            </trans-unit>
+            <trans-unit id="login_could_not_be_prepared">
+                <source>Login could not be prepared!</source>
+                <target>Login konnte nicht vorbereitet werden!</target>
+            </trans-unit>
+            <trans-unit id="login_could_not_be_initialized">
+                <source>Login could not be initialized!</source>
+                <target>Login konnte nicht initialisiert werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_call_forgot_password_form">
+                <source>Could not call forgot password form!</source>
+                <target>Passwort vergessen - konnte nicht aufgerufen werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_refresh_cart">
+                <source>Could not refresh cart!</source>
+                <target>Warenkorb konnte nicht aktualisiert werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_retrieve_cart">
+                <source>Could not retrieve cart!</source>
+                <target>Warenkorb konnte nicht geladen werden!</target>
+            </trans-unit>
+            <trans-unit id="could_not_remove_from_cart">
+                <source>Item could not be removed from cart!</source>
+                <target>Produkt konnte nicht aus Warenkorb entfernt werden!</target>
+            </trans-unit>
+            
+        </body>
+	</file>
+</xliff>

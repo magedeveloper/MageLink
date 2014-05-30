@@ -1,0 +1,20 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+    
+    <f:if condition="{products}">
+        <f:then>
+            <f:render partial="Product/List" arguments="{products:products}" />
+        </f:then>
+    </f:if>
+    
+</f:section>
+        
+        
+        
+        
+        

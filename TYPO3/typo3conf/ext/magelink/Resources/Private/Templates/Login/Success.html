@@ -1,0 +1,15 @@
+<f:layout name="Default" />
+<f:section name="main">
+
+    {namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+    <f:if condition="{settings.display_logout_form_after_login}">
+        <f:translate key="author" arguments="{0: user.name}">{f:translate(key: "logged_in_as")}</f:translate>
+        <br />
+        <f:link.action action="logout" class="button logout_button">{f:translate(key: "logout")}</f:link.action>
+    </f:if>
+
+</f:section>

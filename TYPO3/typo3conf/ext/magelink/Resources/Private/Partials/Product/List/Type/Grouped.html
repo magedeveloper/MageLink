@@ -1,0 +1,20 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="cart_actions">
+    <div class="pricebox">
+        <f:translate key="your_price_starting_at" />
+        <f:if condition="{product.specialPrice}">
+            <f:then>
+                <div class="special_price">
+                    <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{product.finalPrice}</f:format.currency></div>
+                </div>
+            </f:then>
+            <f:else>
+                <div class="price"><f:format.currency currencySign="{product.currency}" decimalSeparator="," thousandsSeparator=".">{m:product.attribute(product: '{product}', attribute: 'minimal_price')}</f:format.currency></div>
+            </f:else>
+        </f:if>
+    </div>
+    <m:product.link product="{product}">
+        <f:translate key="specify_quantity_of_products" />
+    </m:product.link>
+</div>    

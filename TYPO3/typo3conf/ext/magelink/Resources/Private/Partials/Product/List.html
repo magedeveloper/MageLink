@@ -1,0 +1,28 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="tx-magelink-paginate">
+    <f:widget.paginate objects="{products}" as="paginatedProducts" configuration="{itemsPerPage: 10, insertAbove: 1, insertBelow: 1}">
+</div>
+
+<div class="tx-magelink-product-list">
+    <ul>
+        <f:for each="{paginatedProducts}" as="product" iteration="i">
+            <f:if condition="{product.specialPrice}">
+                <f:then>
+                    <li class="product special">
+                </f:then>
+                <f:else>
+                    <li class="product">
+                </f:else>
+            </f:if>
+
+            <f:render partial="Product/List/Item" arguments="{product:product}" />
+
+            </li>
+        </f:for>
+    </ul>
+</div>
+<div class="clear"></div>
+<div class="tx-magelink-paginate">
+    </f:widget.paginate>
+</div>    

@@ -1,0 +1,256 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <category_display>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_category_display_settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.category_root>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_category_root</label>
+                            <config>
+                                <type>select</type>
+                                <multiple>0</multiple>
+                                <itemsProcFunc>MageDeveloper\Magelink\Controller\FlexformController->populateCategoryListAction</itemsProcFunc>
+                                <autosizemax>1</autosizemax>
+                                <items type="array"></items>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.category_root>
+
+                    <settings.entry_appearance>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_root_display_mode</label>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_category_information</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_navigation</numIndex>
+                                        <numIndex index="1">NAVIGATION</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_sub_thumbnails</numIndex>
+                                        <numIndex index="1">THUMBNAILS</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_sub_thumbproducts</numIndex>
+                                        <numIndex index="1">THUMBPRODUCTS</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_navproducts</numIndex>
+                                        <numIndex index="1">NAVPRODUCTS</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.entry_appearance>
+
+                    <!--
+                    <settings.entry_appearance_back_button>
+                        <TCEforms>
+                            <label>Display back button</label>
+                            <displayCond>FIELD:settings.entry_appearance:IN:NAVPRODUCTS</displayCond>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.entry_appearance_back_button>
+                    -->
+
+                    <settings.sub_appearance>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_continuing_display_mode</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_category_information</numIndex>
+                                        <numIndex index="1">INFO</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_navigation</numIndex>
+                                        <numIndex index="1">NAVIGATION</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_sub_thumbnails</numIndex>
+                                        <numIndex index="1">THUMBNAILS</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_sub_thumbproducts</numIndex>
+                                        <numIndex index="1">THUMBPRODUCTS</numIndex>
+                                    </numIndex>
+                                    <numIndex index="4" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_navproducts</numIndex>
+                                        <numIndex index="1">NAVPRODUCTS</numIndex>
+                                    </numIndex>
+                                    <numIndex index="5" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_display_mode_products</numIndex>
+                                        <numIndex index="1">PRODUCTS</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.sub_appearance>
+
+                    <settings.full_category_tree>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_display_full_category_tree</label>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.full_category_tree>
+
+                    <!--
+                    <settings.sub_appearance_back_button>
+                        <TCEforms>
+                            <label>Display back button</label>
+                            <displayCond>FIELD:settings.sub_appearance:IN:NAVPRODUCTS</displayCond>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.sub_appearance_back_button>
+                    -->
+                </el>
+            </ROOT>
+        </category_display>
+        <product_display>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_product_display_setting</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+
+                    <settings.info>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_allowed_products_information</label>
+                            <config>
+                                <type>none</type>
+                                <size>50</size>
+                                <rows>4</rows>
+                                <default>IMPORTANT NOTE:
+
+                                    If you change this setting, all navigation links will end at the TYPO3 Page.
+
+                                    Products will then be displayed as selected.</default>
+                            </config>
+                        </TCEforms>
+                    </settings.info>
+                    
+                    <settings.display_type>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_display_type_products</label>
+                            <onChange>reload</onChange>
+                            <displayCond>FIELD:settings.sub_appearance:IN:THUMBPRODUCTS,NAVPRODUCTS,PRODUCTS</displayCond>
+                            <config>
+                                <type>select</type>
+                                <items type="array">
+                                    <numIndex index="0" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_navigation_links_lead_to_magento</numIndex>
+                                        <numIndex index="1"></numIndex>
+                                    </numIndex>
+                                    <numIndex index="1" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_list</numIndex>
+                                        <numIndex index="1">LIST</numIndex>
+                                    </numIndex>
+                                    <numIndex index="2" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_grid</numIndex>
+                                        <numIndex index="1">GRID</numIndex>
+                                    </numIndex>
+                                    <numIndex index="3" type="array">
+                                        <numIndex index="0">LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_selection_inline</numIndex>
+                                        <numIndex index="1">INLINE</numIndex>
+                                    </numIndex>
+                                </items>
+                                <minitems>0</minitems>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.display_type>
+
+                    <settings.dynamic_detail_pid>
+                        <TCEforms>
+                            <exclude>1</exclude>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_dynamic_detail_view_listener_page</label>
+                            <displayCond>FIELD:settings.display_type:IN:LIST,GRID,INLINE</displayCond>
+                            <config>
+                                <type>group</type>
+                                <internal_type>db</internal_type>
+                                <allowed>pages</allowed>
+                                <size>1</size>
+                                <maxitems>1</maxitems>
+                                <minitems>0</minitems>
+                                <show_thumbs>1</show_thumbs>
+                                <wizards>
+                                    <suggest>
+                                        <type>suggest</type>
+                                    </suggest>
+                                </wizards>
+                            </config>
+                        </TCEforms>
+                    </settings.dynamic_detail_pid>
+                </el>
+            </ROOT>
+        </product_display>
+
+        <refresh_setting>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_load_settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.always_load_from_soap>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_reload_webservice_on_page_load</label>
+                            <config>
+                                <checkbox>1</checkbox>
+                                <type>check</type>
+                            </config>
+                        </TCEforms>
+                    </settings.always_load_from_soap>
+                    <settings.store_view_code>
+                        <TCEforms>
+                            <label>LLL:EXT:magelink/Resources/Private/Language/locallang.xlf:flexform_store_view_code</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <checkbox></checkbox>
+                                <type>input</type>
+                            </config>
+                        </TCEforms>
+                    </settings.store_view_code>
+                </el>
+            </ROOT>
+        </refresh_setting>
+
+    </sheets>
+</T3DataStructure> 
+
+
+

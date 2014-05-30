@@ -1,0 +1,19 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<div class="stock">
+    <f:if condition="{product.qty} > 0">
+        <f:then>
+            <f:if condition="{product.qty} < 15">
+                <f:then>
+                    <f:translate key="in_stock" />: <div class="yellow">{product.qty}</div>
+                </f:then>
+                <f:else>
+                    <f:translate key="in_stock" />: <div class="green">{product.qty}</div>
+                </f:else>
+            </f:if>
+        </f:then>
+        <f:else>
+            <f:translate key="in_stock" />: <div class="red">{product.qty}</div>
+        </f:else>
+    </f:if>
+</div>

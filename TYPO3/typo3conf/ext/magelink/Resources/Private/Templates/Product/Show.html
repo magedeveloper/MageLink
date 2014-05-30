@@ -1,0 +1,17 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+
+    <f:if condition="{products}">
+        <f:then>
+            <f:for each="{products}" as="product" iteration="i">
+                <f:render partial="Product/Show/Item" arguments="{product:product}" />
+            </f:for>
+        </f:then>
+    </f:if>
+    
+</f:section>

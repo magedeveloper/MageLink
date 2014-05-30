@@ -1,0 +1,41 @@
+<f:layout name="Default" />
+
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:section name="main">
+
+    <div class="flash_messages">
+        <f:flashMessages renderMode="div" />
+    </div>
+    <m:category id="{currentCategory.parent}" store="{settings.store_view_code}" as="parent_category">
+        <f:if condition="{parent_category.entityId}">
+            <f:then>
+                <f:if condition="{currentCategory.entityId} != {root_id}">
+                    <f:then>
+                        <div class="parent_category">
+                            <m:category.link category="{parent_category}" class="button">&laquo; {parent_category.name}</m:category.link>
+                        </div>
+                    </f:then>
+                </f:if>
+                <br />
+            </f:then>
+        </f:if>
+    </m:category>
+    <h1>{currentCategory.name}</h1>
+    <f:if condition="{categories}">
+        <f:then>
+            <f:if condition="{categories -> f:count()} > 0">
+                <f:then>
+                    <ul class="tx_magelink_category_navigation">
+                        <f:for each="{categories}" as="category">
+                            <f:then>
+                                <f:render partial="Category/Type/Navigation" arguments="{category:category}" />
+                            </f:then>
+                        </f:for>
+                    </ul>
+                </f:then>
+            </f:if>
+        </f:then>
+    </f:if>
+
+</f:section>

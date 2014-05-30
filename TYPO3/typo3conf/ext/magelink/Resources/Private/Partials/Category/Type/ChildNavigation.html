@@ -1,0 +1,16 @@
+{namespace m = MageDeveloper\Magelink\ViewHelpers}
+
+<f:if condition="{category.childIds} != ''">
+    <f:then>
+        <ul>
+            <f:for each="{m:category.repositoryByIds(ids: '{category.childIds}', store: '{settings.store_view_code}', refreshAll: '0')}" as="child_category">
+                <f:then>
+                    <li>
+                        <m:category.link category="{child_category}">{child_category.name}</m:category.link>
+                        <f:render partial="Category/Type/ChildNavigation" arguments="{category:child_category}" />
+                    </li>
+                </f:then>
+            </f:for>
+        </ul>
+    </f:then>
+</f:if>
