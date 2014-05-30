@@ -76,6 +76,73 @@ jQuery(document).ready(function() {
     
 });
 
+/* gets block information */
+function tx_magelink_ajax_get_block(blockId)
+{
+    displayLoader("div.tx-magelink","");
+
+    var magentoUrl = jQuery("input#magentoUrl").val();
+    var url = magentoUrl + "magelink/json/block/id/"+blockId;
+
+    jQuery.ajax({
+        type: "GET",
+        dataType: "jsonp",
+        jsonp: "jsonp",
+        jsonpCallback: "tx_magelink_ajax_display_block",
+        url: url,
+        params:{},
+        data: {
+        },
+        success: function(data){
+        },
+        error: function(data){
+            tx_magelink_ajax_add_flash_message( locallang.translate("could_not_fetch_block"), 'error', true );
+        }
+    });
+}
+
+/* displays block contents */
+function tx_magelink_ajax_display_block(data)
+{
+    if (data.block && data.id)
+    {
+        jQuery.ajax({
+            type: "POST",
+            dataType: "html",
+            //jsonp: "jsonp",
+            url: blockDisplayUrl,
+            cache:false,
+            params:{
+            },
+            data: {
+                'tx_magelink_blockdisplay[block]' : data.block
+            },
+            beforeSend: function()
+            {
+            },
+            success: function(response) {
+                
+                if (response && data.div != "")
+                {
+                    // No Errors
+                    hideLoader();
+                    jQuery("div#"+data.div).html(response);
+                }
+    
+            },
+            error: function(data){
+                tx_magelink_ajax_add_flash_message( locallang.translate("could_not_display_block"), 'error', true );
+            }
+    
+        });
+    }
+    else
+    {
+        tx_magelink_ajax_add_flash_message( locallang.translate("could_not_display_block"), 'error', true );
+    }
+    
+}
+
 
 /* add item to cart */
 function tx_magelink_ajax_addtocart(entityId)
@@ -475,21 +542,6 @@ function tx_magelink_ajax_add_flash_message(message, type, closeByClick)
     }
    
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

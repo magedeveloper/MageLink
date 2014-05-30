@@ -19,12 +19,11 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 	const CALLBACK_REMOVE_FROM_CART	= "tx_magelink_ajax_removefromcart_callback";
 	const CALLBACK_FORGOT_PASSWORD	= "tx_magelink_ajax_forgot_password_callback";
 	const CALLBACK_COMPLETE_LOGIN	= "tx_magelink_ajax_complete_login_callback";
+	const CALLBACK_DISPLAY_BLOCK	= "tx_magelink_ajax_display_block";
 	
 	/*
 	const CALLBACK_FLASH_MESSAGE 	= "tx_magelink_ajax_add_flash_message";
 	const CALLBACK_UPDATE_CART		= "tx_magelink_ajax_refreshcart";
-	
-	const CALLBACK_DISPLAY_BLOCK	= "tx_magelink_ajax_display_block";
 	*/
 	
 	/**
@@ -174,8 +173,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 					// Encrypt Data
 					$encrypted = Mage::helper("magelink/crypt")->getEncrypted($blockData);
 					
-					//TODO
-					$this->_sendCallback(base64_encode($encrypted), self::CALLBACK_DISPLAY_BLOCK, array("id"=>$blocktype,"div"=>$div));
+					$this->tx_magelink_ajax_display_block(base64_encode($encrypted), array("id"=>$blocktype,"div"=>$div));
 				}
 				
 			}
@@ -754,7 +752,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 	 * Callback Function for
 	 * tx_magelink_ajax_complete_login
 	 */
-	public function tx_magelink_ajax_complete_login_callback($message, $type = self::MESSAGE_TYPE_SUCCESS)
+	public function tx_magelink_ajax_complete_login_callback($message, $type = self::MESSAGE_TYPE_SUCCESS, $closeOnClick = false)
 	{
 		header('Content-Type: application/json');
 		
@@ -769,15 +767,15 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 		echo self::CALLBACK_COMPLETE_LOGIN."(".$encoded.");";
 		exit();
 	}
-	
-	
+
+
 	/**
 	 * Sends the callback message
-	 * 
+	 *
 	 * @param mixed $message The callback message
 	 * @param string $callbackFunc Callback Function Name
 	 * @param array $parameters Callback Function Parameters
-	 * @return
+	 * @return void
 	 */
 	protected function tx_magelink_ajax_complete_login_success($message, $callbackFunc = "callback", $parameters = array())
 	{
@@ -811,17 +809,27 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 		exit();
 
 	}
+
+	/**
+	 * Callback Function for
+	 * tx_magelink_ajax_display_block
+	 */
+	public function tx_magelink_ajax_display_block($block, $parameters = array())
+	{
+		header('Content-Type: application/json');
+
+		$data = array(
+			"block"	=> $block,
+		);
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		$data = array_merge($data, $parameters);
+		$encoded = json_encode($data);
+		echo self::CALLBACK_DISPLAY_BLOCK."(".$encoded.")";
+
+		exit();
+	}
+
+
 	
 	
 	/**
