@@ -255,7 +255,7 @@ function tx_magelink_ajax_getcart_callback(data)
             hideLoader();
         },
         error: function(data){
-            tx_magelink_ajax_add_flash_message( locallang.translate("could_not_refresh_cart"), 'error', true );
+            //tx_magelink_ajax_add_flash_message( locallang.translate("could_not_refresh_cart"), 'error', true );
         }
     });
     
@@ -368,7 +368,6 @@ function tx_magelink_ajax_login_prepare(form)
             if (response.type == 'success')
             {
                 // No Errors
-                hideLoader();
 
                 if (response)
                 {
@@ -377,6 +376,7 @@ function tx_magelink_ajax_login_prepare(form)
                 else
                 {
                     tx_magelink_ajax_add_flash_message( locallang.translate("response_broken"), response.type, true );
+                	hideLoader();
                 }
             
             }
@@ -439,7 +439,7 @@ function tx_magelink_ajax_complete_login_callback(data)
                 'tx_magelink_loginform[arguments]' : data
             },
             success: function(response){
-                hideLoader();
+               
                 if (response)
                 {   
                     if (response.user)
@@ -452,6 +452,7 @@ function tx_magelink_ajax_complete_login_callback(data)
                 }
                 else
                 {
+               		hideLoader();
                     tx_magelink_ajax_add_flash_message( locallang.translate("response_broken"), "error", true );
                 }
                 
@@ -461,7 +462,6 @@ function tx_magelink_ajax_complete_login_callback(data)
     }
     else
     {
-    	console.log(data);
     	if (data.message && data.type == "error")
     	{
     		tx_magelink_ajax_add_flash_message( data.message, 'error', true );

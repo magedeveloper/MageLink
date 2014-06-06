@@ -18,21 +18,31 @@ function prepareLogin()
         }, 
         data: jQuery(form).serializeArray(),
         success: function(response){
+        	
             if (response)
             {
                 // No Errors
                 hideLoader();
 
-                if (response.status == "success")
+                if (response.type == "success")
                 {
                     tx_magelink_ajax_init_login(response);
                 }
+                else
+                {
+                	hideLoader();
+                }
             
             }
+            
+            return true;
+            
+        },
+        error: function(response) {
+        	hideLoader();
         }
-        
     });	
-    		
+    
 }
 
 /* init typo3 login procedure */
@@ -47,12 +57,13 @@ function tx_magelink_ajax_init_login(data)
         type: "GET",
         dataType: "jsonp",
         jsonp: "jsonp",
+        jsonpCallback: "tx_magelink_ajax_complete_login",
         url: loginUrl,
         params:{},
         data: {
             'tx_magelink_loginform[enc]' : data.enc
         },
-        success: function(data){
+        success: function(response){
         }
     });
 	
@@ -61,7 +72,7 @@ function tx_magelink_ajax_init_login(data)
 /* finalizes the login */
 function tx_magelink_ajax_complete_login(data)
 {
-	if (data.status == "success")
+	if (data.type == "success")
 	{
 		var url = baseUrl + data.url;
 		
@@ -76,7 +87,7 @@ function tx_magelink_ajax_complete_login(data)
 	        success: function(response){
 	            if (response)
 	            {
-	                if (response.status == "success")
+	                if (response.type == "success")
 	                {
 	                    tx_magelink_ajax_response(response);
 	                }
@@ -92,6 +103,10 @@ function tx_magelink_ajax_complete_login(data)
 	        
 	    });	
 		
+	}
+	else
+	{
+		// not working
 	}
 	
 }
