@@ -8,6 +8,7 @@
 	jQuery.noConflict();
 	jQuery(document).ready(function() {
 	
+	
 		if (loginEnabled == true)
 		{
 			var initLogin = false;
@@ -15,7 +16,7 @@
 		    /* login form listener */
 		    jQuery("form#login-form").on("submit", function(e)
 		    {
-		    	if (initLogin === false)
+		    	if (initLogin === false && dataForm.validator.validate() == true)
 		    	{
 					prepareLogin();
 					initLogin = true;
