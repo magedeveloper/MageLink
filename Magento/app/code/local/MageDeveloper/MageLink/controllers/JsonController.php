@@ -20,11 +20,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 	const CALLBACK_FORGOT_PASSWORD	= "tx_magelink_ajax_forgot_password_callback";
 	const CALLBACK_COMPLETE_LOGIN	= "tx_magelink_ajax_complete_login_callback";
 	const CALLBACK_DISPLAY_BLOCK	= "tx_magelink_ajax_display_block";
-	
-	/*
 	const CALLBACK_FLASH_MESSAGE 	= "tx_magelink_ajax_add_flash_message";
-	const CALLBACK_UPDATE_CART		= "tx_magelink_ajax_refreshcart";
-	*/
 	
 	/**
 	 * Message Types
@@ -195,7 +191,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
         }
 		
 		$enc = $this->getRequest()->getParam("enc");
-
+		$enc = base64_decode($enc);
 		$decrypted = Mage::helper("magelink/crypt")->getDecrypted($enc);
 		
 		if ($this->_validateDecrypted($decrypted))
@@ -226,7 +222,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 				switch ($e->getCode()) 
 				{
 					case Mage_Customer_Model_Customer::EXCEPTION_EMAIL_NOT_CONFIRMED:
-						$value = Mage::helper('customer')->getEmailConfirmationUrl($login['username']);
+						$value = Mage::helper('customer')->getEmailConfirmationUrl($username);
 						$message = Mage::helper('customer')->__('This account is not confirmed. <a href="%s">Click here</a> to resend confirmation email.', $value);
 						$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_INFO, true);
 						break;
@@ -300,7 +296,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
         }
 		
 		$enc = $this->getRequest()->getParam("enc");
-
+		$enc = base64_decode($enc);
 		$decrypted = Mage::helper("magelink/crypt")->getDecrypted($enc);
 		
 		if ($this->_validateDecrypted($decrypted))
@@ -330,7 +326,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 				switch ($e->getCode()) 
 				{
 					case Mage_Customer_Model_Customer::EXCEPTION_EMAIL_NOT_CONFIRMED:
-						$value = Mage::helper('customer')->getEmailConfirmationUrl($login['username']);
+						$value = Mage::helper('customer')->getEmailConfirmationUrl($username);
 						$message = Mage::helper('customer')->__('This account is not confirmed. <a href="%s">Click here</a> to resend confirmation email.', $value);
 						$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_INFO, true);
 						break;
@@ -487,12 +483,12 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 			$neededKeys = array(
 				"email","password","hash"
 			);
-			$result = array_diff($needed, array_keys($credentials));
+			$result = array_diff($neededKeys, array_keys($credentials));
 			
 			if (!empty($result))
 			{
 				$message = Mage::helper("customer")->__("Login and password are required.");
-				$this->_deliverMessage($message, self::MESSAGE_TYPE_ERROR, true);
+				$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
 			}
 			
 			$customer = Mage::getModel('customer/customer')
@@ -505,7 +501,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 			if (!$customer->getId())
 			{
 				$message = Mage::helper("magelink")->__("Customer does not exist!");
-				$this->_deliverMessage($message, self::MESSAGE_TYPE_ERROR, true);
+				$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
 			}
 			
 		}
@@ -515,7 +511,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 		if (!array_key_exists("remote_addr", $decrypted))
 		{
 			$message = Mage::helper("magelink")->__("Host is invalid!");
-			$this->_deliverMessage($message, self::MESSAGE_TYPE_ERROR, true);
+			$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
 		}
 		else
 		{
@@ -525,7 +521,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 			if ($addrData != $addrMagento)
 			{
 				$message = Mage::helper("magelink")->__("Host is invalid!");
-				$this->_deliverMessage($message, self::MESSAGE_TYPE_ERROR, true);
+				$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
 			}
 			
 		}

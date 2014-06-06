@@ -334,7 +334,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 			$parameters = array(
 				"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 				"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceTYPO3/",
-				"enc"		=> $encrypted,
+				"enc"		=> base64_encode($encrypted),
 			);
 
 			header('Content-Type: application/json');
@@ -392,7 +392,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 		$parameters = array(
 			"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 			"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceMagento/",
-			"enc"		=> $encrypted,
+			"enc"		=> base64_encode($encrypted),
 		);
 
 		header('Content-Type: application/json');
