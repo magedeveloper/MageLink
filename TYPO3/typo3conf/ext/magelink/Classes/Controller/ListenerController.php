@@ -162,13 +162,14 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
 
 		$parameters = array(
-			"status" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
+			"type" 		=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 			"url" 		=> "magelink/json/loginSourceMagento/",
 			"enc"		=> $encrypted,
 		);
 
 		header('Content-Type: application/json');
-		echo self::CALLBACK_FUNC_LOGIN . '(' . json_encode($parameters) . ");";
+		$encoded = json_encode($parameters);
+		echo self::CALLBACK_FUNC_LOGIN."(".$encoded.");";
 		exit();
 	}
 
@@ -373,7 +374,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 			$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
 
 			$parameters = array(
-				"status" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
+				"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 				"url" 		=> "/magelink/json/loginSourceTYPO3/",
 				"enc"		=> $encrypted,
 			);
