@@ -20,16 +20,26 @@ class MageDeveloper_MageLink_AccountController extends Mage_Customer_AccountCont
      */
     public function preDispatch()
     {
-        parent::preDispatch();
+    	parent::preDispatch();
 		
-		// If customer is already logged out, maybe by session
-		if (!$this->_getSession()->authenticate($this)) 
+		$action = $this->getRequest()->getActionName();
+		$allowedActions = array(
+			"logout",
+		);
+		
+		if (in_array($action, $allowedActions))
 		{
-			$loginUrl = Mage::helper("magelink")->getTYPO3LoginUrl(array());
-			$this->_redirectUrl($loginUrl);
-			return;
+			// If customer is already logged out, maybe by session
+			if (!$this->_getSession() || $this->_getSession()->authenticate($this)) 
+			{
+				$loginUrl = Mage::helper("magelink")->getTYPO3LoginUrl(array());
+				$this->_redirectUrl($loginUrl);	
+			}
+
 		}
-    }	
+		
+		return;
+    }
 	
 	/**
 	 * logout action for customer

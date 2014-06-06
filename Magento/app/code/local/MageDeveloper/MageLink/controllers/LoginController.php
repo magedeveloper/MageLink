@@ -1,6 +1,10 @@
 <?php
 class MageDeveloper_MageLink_LoginController extends Mage_Core_Controller_Front_Action
 {
+	/**
+	 * Status
+	 * @var string
+	 */
 	const STATUS_TYPE_SUCCESS = "success";
 	
 	/**
@@ -37,16 +41,11 @@ class MageDeveloper_MageLink_LoginController extends Mage_Core_Controller_Front_
 				header('Content-Type: application/json');
 				echo json_encode($response);
 				exit();
-				
 			}
 			
 		}		
 		
 	}	
-	
-	
-	
-	
 		
 }
 	
