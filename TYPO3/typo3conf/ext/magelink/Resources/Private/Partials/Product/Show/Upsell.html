@@ -4,7 +4,7 @@
 
 <div class="upsell-product-grid">
 
-    <f:for each="{m:product.repositoryByIds(ids: '{product.upsellProductIds}', store: '{settings.store_view_code}', refreshAll: '0', onlyEnabled: '0')}" as="upsell_product" iteration="i">
+    <f:for each="{m:product.repositoryByIds(ids: '{product.upsellProductIds}', store: '{store}', refreshAll: '0', onlyEnabled: '0')}" as="upsell_product" iteration="i">
         <f:then>
             <f:if condition="{i.index} < 4">
                 <f:then>

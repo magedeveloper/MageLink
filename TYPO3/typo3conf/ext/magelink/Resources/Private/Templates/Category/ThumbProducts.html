@@ -11,7 +11,7 @@
     <f:if condition="{category}">
         <f:then>
 
-            <m:category id="{category.parent}" store="{settings.store_view_code}" as="parent_category">
+            <m:category id="{category.parent}" store="{store}" as="parent_category">
                 <f:if condition="{parent_category.entityId}">
                     <f:then>
                         <f:if condition="{category.entityId} != {root_id}">

@@ -52,14 +52,14 @@
 
         <f:if condition="{product.type} == 'simple'">
             <f:then>
-                <f:render partial="Product/Show/Type/Simple" arguments="{product:product}" />
+                <f:render partial="Product/Show/Type/Simple" arguments="{product:product, store:store}" />
             </f:then>
         </f:if>
 
         <f:if condition="{product.type} == 'grouped'">
             <f:then>
                 <div class="cart_actions">
-                    <f:render partial="Product/Show/Type/Grouped" arguments="{product:product}" />
+                    <f:render partial="Product/Show/Type/Grouped" arguments="{product:product, store:store}" />
                 </div>
             </f:then>
         </f:if>
@@ -67,7 +67,7 @@
         <f:if condition="{product.type} == 'configurable'">
             <f:then>
                 <div class="cart_actions">
-                    <f:render partial="Product/Show/Type/Configurable" arguments="{product:product}" />
+                    <f:render partial="Product/Show/Type/Configurable" arguments="{product:product, store:store}" />
                 </div>
             </f:then>
         </f:if>

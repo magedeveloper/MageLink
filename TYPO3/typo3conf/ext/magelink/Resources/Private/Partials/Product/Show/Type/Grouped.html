@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
 
-                        <f:for each="{m:product.repositoryByIds(ids: '{product.associatedProductIds}', store: '{settings.store_view_code}', refreshAll: '{settings.always_load_from_soap}')}" as="associated_product">
+                        <f:for each="{m:product.repositoryByIds(ids: '{product.associatedProductIds}', store: '{store}', refreshAll: '{settings.always_load_from_soap}')}" as="associated_product">
                             <f:then>
                                 <f:cycle values="{0: 'even', 1: 'odd'}" as="cycle">
                                     <tr class="{cycle}">

@@ -8,7 +8,7 @@
     
     <f:if condition="{products}">
         <f:then>
-            <f:render partial="Product/List" arguments="{products:products}" />
+            <f:render partial="Product/List" arguments="{products:products, store:store}" />
         </f:then>
     </f:if>
     

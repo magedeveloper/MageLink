@@ -4,7 +4,7 @@
     <f:then>
         <f:if condition="{products}">
             <f:then>
-                <f:render partial="Product/List" arguments="{products:products}" />
+                <f:render partial="Product/List" arguments="{products:products, store:store}" />
             </f:then>
         </f:if>
     </f:then>
@@ -13,7 +13,7 @@
     <f:then>
         <f:if condition="{products}">
             <f:then>
-                <f:render partial="Product/Grid" arguments="{products:products}" />
+                <f:render partial="Product/Grid" arguments="{products:products, store:store}" />
             </f:then>
         </f:if>
     </f:then>
@@ -22,7 +22,7 @@
     <f:then>
         <f:if condition="{products}">
             <f:then>
-                <f:render partial="Product/Inline" arguments="{products:products}" />
+                <f:render partial="Product/Inline" arguments="{products:products, store:store}" />
             </f:then>
         </f:if>
     </f:then>

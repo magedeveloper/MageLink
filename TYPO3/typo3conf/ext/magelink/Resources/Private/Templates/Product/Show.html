@@ -9,7 +9,7 @@
     <f:if condition="{products}">
         <f:then>
             <f:for each="{products}" as="product" iteration="i">
-                <f:render partial="Product/Show/Item" arguments="{product:product}" />
+                <f:render partial="Product/Show/Item" arguments="{product:product, store:store}" />
             </f:for>
         </f:then>
     </f:if>

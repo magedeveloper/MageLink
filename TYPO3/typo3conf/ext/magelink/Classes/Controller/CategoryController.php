@@ -178,6 +178,7 @@ class CategoryController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		$this->view->assign("currentCategory", $category);
 		$this->view->assign("categories", $categories);
 		$this->view->assign("root_id", $this->settingsService->getCategoryRootId());
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -206,6 +207,7 @@ class CategoryController extends \MageDeveloper\Magelink\Controller\AbstractCont
 
 		$this->view->assign("categories", $categories);
 		$this->view->assign("root_id", $this->settingsService->getCategoryRootId());
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -247,8 +249,9 @@ class CategoryController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		{
 			$displayMode = $this->settingsService->getCategorySubDisplayMode();
 		}
+		
 		$this->view->assign("displayMode", $displayMode);
-
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -298,6 +301,7 @@ class CategoryController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		}
 		
 		$this->view->assign("displayMode", $displayMode);
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -327,6 +331,7 @@ class CategoryController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		}
 		
 		$this->view->assign("displayMode", $displayMode);
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**

@@ -123,6 +123,7 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 		$this->view->assign('requested', implode(', ', $ids));
 		$this->view->assign('setting', $this->settingsService->getSettings());
 		$this->view->assign("media_url", $this->settingsService->getMediaUrl());
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -138,6 +139,7 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 		$products = $this->productImport->getProductRepositoryByIds($ids, $storeViewCode, $reload);
 		$this->view->assign('products', $products);
 		$this->view->assign('requested', implode(', ', $ids));
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -158,6 +160,7 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 		$this->view->assign('requested', implode(', ', $ids));
 		$this->view->assign('setting', $this->settingsService->getSettings());
 		$this->view->assign("media_url", $this->settingsService->getMediaUrl());
+		$this->view->assign("store", $storeViewCode);
 	}
 	
 	/**
@@ -174,6 +177,7 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 		$products = $this->productImport->getProductRepositoryByIds($ids, $storeViewCode, $reload);
 		$this->view->assign('products', $products);
 		$this->view->assign('requested', implode(', ', $ids));
+		$this->view->assign("store", $storeViewCode);
 	}
 
 	/**
@@ -209,6 +213,7 @@ class ProductController extends \MageDeveloper\Magelink\Controller\AbstractContr
 						$templateFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($this->getExtensionKey()) . "Resources/Private/Templates/Product/Show.html";
 						$this->view->setTemplatePathAndFilename($templateFile);
 						$this->view->assign("products", array($product));
+						$this->view->assign("store", $storeViewCode);
 					}
 					
 				}
