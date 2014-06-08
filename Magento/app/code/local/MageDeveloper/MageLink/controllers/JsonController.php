@@ -265,7 +265,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 					// Create response
 					$response = array(
 						"type"	=> self::MESSAGE_TYPE_SUCCESS,
-						"enc" 		=> $encrypted,
+						"enc" 		=> base64_encode($encrypted),
 					);
 					
 					$this->tx_magelink_ajax_complete_login_success($response, self::CALLBACK_COMPLETE_LOGIN);
@@ -383,7 +383,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 				// Create response
 				$response = array(
 					"type"	=> self::MESSAGE_TYPE_SUCCESS,
-					"enc" 		=> $encrypted,
+					"enc" 		=> base64_encode($encrypted),
 				);
 					
 				$this->tx_magelink_ajax_complete_login_success($response, self::CALLBACK_COMPLETE_LOGIN);

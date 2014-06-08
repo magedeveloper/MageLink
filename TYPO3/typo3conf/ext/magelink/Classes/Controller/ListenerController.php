@@ -109,6 +109,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 	public function getRequestData()
 	{
 		$enc = $this->request->getArgument("enc");
+		$enc = base64_decode($enc);
 
 		// Encryption/Decryption Key
 		$key = $this->settingsService->getCryptKey();
@@ -164,7 +165,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		$parameters = array(
 			"type" 		=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 			"url" 		=> "magelink/json/loginSourceMagento/",
-			"enc"		=> $encrypted,
+			"enc"		=> base64_encode($encrypted),
 		);
 
 		header('Content-Type: application/json');
@@ -183,6 +184,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		if ($this->request->hasArgument("enc"))
 		{
 			$enc = $this->request->getArgument("enc");
+			$enc = base64_decode( $enc );
 
 			// Encryption/Decryption Key
 			$key = $this->settingsService->getCryptKey();
@@ -376,7 +378,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 			$parameters = array(
 				"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
 				"url" 		=> "/magelink/json/loginSourceTYPO3/",
-				"enc"		=> $encrypted,
+				"enc"		=> base64_encode($encrypted),
 			);
 
 			header('Content-Type: application/json');
@@ -404,6 +406,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		if ($this->request->hasArgument("enc"))
 		{
 			$enc = $this->request->getArgument("enc");
+			$enc = base64_decode( $enc );
 			
 			// Encryption/Decryption Key
 			$key = $this->settingsService->getCryptKey();

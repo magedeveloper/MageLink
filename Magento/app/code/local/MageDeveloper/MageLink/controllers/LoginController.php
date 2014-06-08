@@ -35,7 +35,7 @@ class MageDeveloper_MageLink_LoginController extends Mage_Core_Controller_Front_
 				$response = array(
 					"type" 			=> self::STATUS_TYPE_SUCCESS,
 					"url"	 			=> Mage::helper("magelink")->getTYPO3AjaxPrepareUrl(),
-					"enc" 				=> $encrypted,
+					"enc" 				=> base64_encode($encrypted),
 				);
 
 				header('Content-Type: application/json');

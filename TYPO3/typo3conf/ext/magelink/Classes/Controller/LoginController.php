@@ -525,7 +525,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 			// Encryption/Decryption Key
 			$key = $this->settingsService->getCryptKey();
 
-			$decrypted = \MageDeveloper\Magelink\Utility\Crypt::decrypt($arguments["enc"], $key);
+			$decrypted = \MageDeveloper\Magelink\Utility\Crypt::decrypt(base64_decode($arguments["enc"]), $key);
 
 			// User Array
 			$user = $this->authenticationService->getFrontendUser();
@@ -606,7 +606,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 			// Encryption/Decryption Key
 			$key = $this->settingsService->getCryptKey();
 
-			$decrypted 	= \MageDeveloper\Magelink\Utility\Crypt::decrypt($arguments["enc"], $key);
+			$decrypted 	= \MageDeveloper\Magelink\Utility\Crypt::decrypt(base64_decode($arguments["enc"]), $key);
 			$remoteAddr = \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR');
 
 			$hash = $this->hashRepository->findOneByHash($decrypted["hash"]);
