@@ -406,7 +406,7 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 		if ($this->request->hasArgument("enc"))
 		{
 			$enc = $this->request->getArgument("enc");
-			$enc = base64_decode( $enc );
+			$enc = base64_decode($enc);
 			
 			// Encryption/Decryption Key
 			$key = $this->settingsService->getCryptKey();
