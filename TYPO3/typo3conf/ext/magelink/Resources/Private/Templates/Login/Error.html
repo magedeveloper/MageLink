@@ -6,6 +6,10 @@
     </div>
 
     <h1><f:translate key="login_error">Login Error</f:translate></h1>
+    <f:if condition="{message}">
+        <h2>{message}</h2>
+    </f:if>
+    
     <f:link.page class="button try_again_button">{f:translate(key: "try_again")}</f:link.page>
 
 </f:section>

@@ -10,23 +10,52 @@
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
             <groups>
-                <t3general translate="label" module="magelink">
-                    <label>Login Settings</label>
+				<login_settings translate="label" module="magelink">
+                    <label>Single SignOn/Off Settings</label>
                     <frontend_type>text</frontend_type>
                     <sort_order>50</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <fields>
-                        <typo3_baseurl translate="label">
-                            <label>URL of the TYPO3 Login Site</label>
-							<comment>Please enter the full URL of the TYPO3 Login Site</comment>
+                    	<typo3_baseurl translate="label">
+                            <label>TYPO3 Base URL</label>
+							<comment>Please enter the TYPO3 Login URL (e.g. http://www.mytypo3site.org/)</comment>
 							<frontend_type>text</frontend_type>
 							<sort_order>50</sort_order>
 							<show_in_default>1</show_in_default>
 							<show_in_website>1</show_in_website>
 							<show_in_store>1</show_in_store>
                         </typo3_baseurl>
+                        <typo3_loginurl translate="label">
+                            <label>TYPO3 Login URL</label>
+							<comment>Please enter the TYPO3 Login URL (e.g. http://www.mytypo3site.org/login/)</comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </typo3_loginurl>
+                        <enabled translate="label">
+                            <label>Enable Ajax Single SignOn/Off Listener</label>
+                            <comment>This setting enables the ajax listener for customer login form. Set to no, if TYPO3 and Magento share the same server!</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </enabled>
+                    </fields>
+                  </login_settings>            	
+                <t3general translate="label" module="magelink">
+                    <label>Connection Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
                         <decryption_key translate="label">
                             <label>Shared Key for decryption</label>
 							<comment>Please enter the same key as used in TYPO3</comment>
@@ -41,7 +70,7 @@
 				  <t3import translate="label" module="magelink">
                     <label>Import Settings</label>
                     <frontend_type>text</frontend_type>
-                    <sort_order>100</sort_order>
+                    <sort_order>150</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -58,25 +87,6 @@
                         </customer_website>
                     </fields>
                   </t3import>
-				  <login_settings translate="label" module="magelink">
-                    <label>Login Settings</label>
-                    <frontend_type>text</frontend_type>
-                    <sort_order>150</sort_order>
-                    <show_in_default>1</show_in_default>
-                    <show_in_website>1</show_in_website>
-                    <show_in_store>1</show_in_store>
-                    <fields>
-                        <enabled translate="label">
-                            <label>Enable Single SignOn/Off Listener</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-							<sort_order>0</sort_order>
-							<show_in_default>1</show_in_default>
-							<show_in_website>1</show_in_website>
-							<show_in_store>1</show_in_store>
-                        </enabled>
-                    </fields>
-                  </login_settings>
               </groups>
           </magelink>
     </sections>

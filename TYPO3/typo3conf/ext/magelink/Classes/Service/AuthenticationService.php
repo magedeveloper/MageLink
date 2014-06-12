@@ -160,6 +160,13 @@ implements \TYPO3\CMS\Core\SingletonInterface
 			if (\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded("saltedpasswords"))
 			{
 				$ok = $this->saltedPasswordService->compareUident($user, $loginData);
+				
+				if (!$ok)
+				{
+					$user["password"] = $password;
+					$ok = $this->saltedPasswordService->compareUident($user, $loginData);
+				}
+				
 			}
 			else
 			{

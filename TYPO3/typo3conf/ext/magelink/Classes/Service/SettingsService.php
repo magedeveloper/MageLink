@@ -311,6 +311,16 @@ class SettingsService
 	}
 	
 	/**
+	 * Gets the magento login url
+	 * 
+	 * @return string
+	 */
+	public function getMagentoLoginUrl()
+	{
+		return $this->getMagentoBaseUrl() . "/customer/account/login";
+	}
+	
+	/**
 	 * Gets the api url
 	 * 
 	 * @return \string

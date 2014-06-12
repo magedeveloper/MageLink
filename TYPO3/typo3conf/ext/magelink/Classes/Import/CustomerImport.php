@@ -582,5 +582,4 @@ class CustomerImport extends \MageDeveloper\Magelink\Import\AbstractImport
 	}
 
 
-
 }

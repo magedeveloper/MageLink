@@ -509,7 +509,6 @@ class ListenerController extends \MageDeveloper\Magelink\Controller\AbstractCont
 	{
 		// Determine the user source setting
 		$userSource = $this->settingsService->getUserSource();
-		
 		switch($userSource)
 		{
 			// Procedure when the user source is TYPO3

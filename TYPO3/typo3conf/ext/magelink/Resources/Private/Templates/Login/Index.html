@@ -2,19 +2,10 @@
 <f:section name="main">
 
     {namespace m = MageDeveloper\Magelink\ViewHelpers}
-
-    <div class="flash_messages">
-        <f:flashMessages renderMode="div" />
-    </div>
     
     <m:page.jsTranslation keys="unknown_error,logged_in_as,preparing_login,calling_shop_login,login_failed,response_broken,evaluating_response" extension="Magelink" />
     
-    <script type="text/javascript">
-        var ajaxPrepareUrl   = '{f:uri.action(action: "ajaxPrepare", controller: "Login", pageType: "1337154991")}';
-        var ajaxResponseUrl = '{f:uri.action(action: "ajaxResponse", controller: "Login", pageType: "1337154991")}';
-    </script>
-
-    <f:form action="" name="tx-magelink-login" id="tx-magelink-login" class="tx-magelink-form">
+    <f:form action="{action}" name="tx-magelink-login" id="tx-magelink-login" class="tx-magelink-form" method="POST">
         <div class="tx-magelink-form_row">
             <label for="tx-magelink-login-email"><f:translate key="email" /></label>
             <f:form.textfield name="tx-magelink-login-email" value="" class="tx_magelink_input_text" />
@@ -23,6 +14,8 @@
             <label for="tx-magelink-login-password"><f:translate key="password" /></label>
             <f:form.password name="tx-magelink-login-password" value="" class="tx_magelink_input_text" />
         </div>
+        
+        <f:form.hidden name="tx-magelink-login-requesturl" value="{requestUrl}" />
         
         <button type="submit" class="tx_magelink_submit orange" id="tx_magelink_ajax_dispatcher">
             <f:translate key="login" />
@@ -33,5 +26,21 @@
         </f:if>
 
     </f:form>
+    
+    <f:if condition="{action} == ''">
+        <script type="text/javascript">
+            var ajaxPrepareUrl   = '{f:uri.action(action: "ajaxPrepare", controller: "Login", pageType: "1337154991")}';
+            var ajaxResponseUrl = '{f:uri.action(action: "ajaxResponse", controller: "Login", pageType: "1337154991")}';
+        
+            jQuery("form#tx-magelink-login").submit(function(e)
+            {
+               e.preventDefault();
+               tx_magelink_ajax_login_prepare(this);
+            });
+        </script>
+    </f:if>
+    
+
+
 
 </f:section>

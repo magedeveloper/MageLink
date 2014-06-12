@@ -9,14 +9,20 @@
 	</default>
 	
     <customer_account_login>
+    	<remove name="customer_form_login" />
         <reference name="content">
-            <block type="magelink/login" name="magelink_login" template="magelink/login.phtml" />
+             <block type="magelink/customer_form_login" name="magelink_customer_form_login" template="magelink/customer/form/login.phtml">
+             	<block type="magelink/ajax_login_listener" name="magelink_ajax_login_listener" template="magelink/ajax/login/listener.phtml" />
+             </block>
         </reference>
     </customer_account_login>
     
     <checkout_onepage_index>
+    	<remove name="customer_form_login" />
     	<reference name="content">
-            <block type="magelink/login" name="magelink_login" template="magelink/login.phtml" />
+			<block type="magelink/customer_form_login" name="magelink_customer_form_login" template="magelink/customer/form/login.phtml">
+				<block type="magelink/ajax_login_listener" name="magelink_ajax_login_listener" template="magelink/ajax/login/listener.phtml" />
+			</block>
     	</reference>
     </checkout_onepage_index>
 

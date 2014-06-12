@@ -196,7 +196,6 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 		
 		if ($this->_validateDecrypted($decrypted))
 		{
-			
 			// Decrypted information is okay
 			$credentials = $decrypted["credentials"];
 			
@@ -204,6 +203,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 			$username = $credentials["email"];
 			$password = $credentials["password"];
 			$hash	  = $credentials["hash"];
+			$requestUrl	= $credentials["requestUrl"];
 			
 			$session = $this->_getCustomerSession();
 			
@@ -255,7 +255,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 						"customer_id"		=> $this->_getCustomerSession()->getCustomer()->getId(),		
 						self::FORM_ID_EMAIL	=> $this->_getCustomerSession()->getCustomer()->getEmail(),
 						"hash"				=> $hash,
-						"back_url"			=> $decrypted["back_url"],
+						"back_url"			=> $decrypted["requestUrl"],
 						"remote_addr"		=> $this->getRequest()->getServer("REMOTE_ADDR"),
 					);
 		
@@ -305,9 +305,9 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 			$credentials = $decrypted["credentials"];
 			
 			// Username
-			$username = $credentials["email"];
-			$password = $credentials["password"];
-			$hash	  = $credentials["hash"];
+			$username 	= $credentials["email"];
+			$password 	= $credentials["password"];
+			$hash	  	= $credentials["hash"];
 			
 			$session = $this->_getCustomerSession();
 			
@@ -373,7 +373,7 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 					self::FORM_ID_EMAIL		=> $this->_getCustomerSession()->getCustomer()->getEmail(),		
 					self::FORM_ID_PASSWORD	=> $this->_getCustomerSession()->getCustomer()->getPasswordHash(),
 					"hash"					=> $hash,
-					"back_url"				=> $decrypted["back_url"],
+					"back_url"				=> $decrypted["requestUrl"],
 					"remote_addr"			=> $this->getRequest()->getServer("REMOTE_ADDR"),
 				);
 		
@@ -524,6 +524,24 @@ class MageDeveloper_MageLink_JsonController extends Mage_Core_Controller_Front_A
 				$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
 			}
 			
+		}
+		
+		// Check remote addr
+		if (!array_key_exists("requestUrl", $decrypted))
+		{
+			$message = Mage::helper("magelink")->__("Wrong Request!");
+			$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
+		}
+		else
+		{
+			$typo3BaseUrl = Mage::helper("magelink")->getTYPO3BaseUrl();
+			$pos = strpos($decrypted["requestUrl"], $typo3BaseUrl);
+			
+			if ($pos != 0 || $pos === false)
+			{
+				$message = Mage::helper("magelink")->__("Wrong Request!");
+				$this->tx_magelink_ajax_complete_login_callback($message, self::MESSAGE_TYPE_ERROR, true);
+			}
 		}
 		
 		return true;		

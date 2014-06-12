@@ -76,4 +76,45 @@ class CustomerData extends \MageDeveloper\Magelink\Magento\Data\AbstractData
 
 		throw new \Exception("Could not establish a magento connection");
 	}
+	
+	/**
+	 * Login a customer on magento
+	 * 
+	 * @param string $email E-Mail
+	 * @param string $password Password
+	 * @throws Exception
+	 * @return int Customer ID
+	 */
+	public function loginCustomer($email, $password)
+	{
+		if ($this->magentoCore->init())
+		{
+			\Mage::getSingleton("core/session", array("name" => "frontend"));
+				
+			$websiteId 	= \Mage::app()->getStore()->getWebsiteId();
+			$customer 	= \Mage::getModel("customer/customer");
+			$customer->setWebsiteId($websiteId);
+			
+			try 
+			{
+				$customer->loadByEmail($email);
+	
+				if ($customer instanceof \Mage_Customer_Model_Customer && $customer->getId())
+				{
+					$session = \Mage::getSingleton('customer/session');
+					$session->setCustomerAsLoggedIn($customer);
+					
+					return (int)$customer->getId();
+				}
+				
+			} catch (\Exception $e) {
+				
+			}
+			
+			return false;
+		}
+		
+		throw new \Exception("Could not establish a magento connection");
+	}
+	
 }

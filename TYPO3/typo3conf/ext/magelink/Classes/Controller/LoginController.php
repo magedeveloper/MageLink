@@ -37,8 +37,9 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 	 * Form Ids
 	 * @var \string
 	 */
-	const FORM_ID_EMAIL 	= "tx_magelink_loginform[tx-magelink-login-email]";
-	const FORM_ID_PASSWORD	= "tx_magelink_loginform[tx-magelink-login-password]";
+	const FORM_ID_EMAIL 		= "tx_magelink_loginform[tx-magelink-login-email]";
+	const FORM_ID_PASSWORD		= "tx_magelink_loginform[tx-magelink-login-password]";
+	const FORM_ID_REQUEST_URL	= "tx_magelink_loginform[tx-magelink-login-requesturl]";
 
 	/**
 	 * Request Data
@@ -89,11 +90,33 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 	protected $frontendUserGroupRepository;
 
 	/**
+	 * Magento Core
+	 * @var \MageDeveloper\Magelink\Magento\Core
+	 * @inject
+	 */
+	protected $magentoCore;
+
+	/**
+	 * Magento Helper
+	 * @var \MageDeveloper\Magelink\Magento\Helper
+	 * @inject
+	 */
+	protected $magentoHelper;
+	
+	/**
 	 * indexAction
 	 */
 	public function indexAction()
 	{
+		// Direct access to magento
+		if ($this->settingsService->isMagentoLocal())
+		{
+			$uri = "directLogin";
+			$this->view->assign("action", $uri);
+		}
+		
 		$this->view->assign("settings", $this->settings);
+		$this->view->assign("requestUrl", $this->uriBuilder->getRequest()->getRequestUri());
 	
 		// User is already logged in
 		if ($this->authenticationService->isLoggedIn())
@@ -103,7 +126,178 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 		}
 		
 	}
+	
+	/**
+	 * Direct Login when Magento is local
+	 */
+	public function directLoginAction()
+	{
+		if(	$this->request->getMethod() == "POST" &&
+			$this->request->hasArgument("tx-magelink-login-email") &&
+			$this->request->hasArgument("tx-magelink-login-password")
+		) {
+			
+			// Determine the user source setting
+			$userSource = $this->settingsService->getUserSource();
+	
+			switch($userSource)
+			{
+				// Procedure when the user source is TYPO3
+				case \MageDeveloper\Magelink\Service\SettingsService::USER_SOURCE_TYPO3:
+	
+					// Initiate the TYPO3 Login Procedure
+					$this->forward("directTYPO3LoginProcedure");
+					break;
+				
+				case \MageDeveloper\Magelink\Service\SettingsService::USER_SOURCE_MAGENTO:
+				default:
+					
+					// Procedure when the user source is Magento	
+					$this->forward("directMagentoLoginProcedure");
+					break;
+	
+			}
+			
+		}
+		
+		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed", $this->extensionName);
+		$this->addGlobalLoginErrorMessage($message);
+		$this->redirect("index");
+	}
+	
+	/**
+	 * Direct including of the login action when
+	 * the customers are located in TYPO3
+	 */
+	public function directTYPO3LoginProcedureAction()
+	{
+		$login 			= $this->request->getArgument("tx-magelink-login-email");
+		$password		= $this->request->getArgument("tx-magelink-login-password");
+		
+		$isAuth			= $this->authenticationService->auth($login, $password);
+		
+		// User credentials are invalid!
+		if (!$isAuth)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
+			$this->addGlobalLoginErrorMessage($message);
+			$this->redirect("error");
+		}
+		
+		// User Array
+		$user = $this->authenticationService->getFrontendUser();
+		
+		// Could not retrieve user
+		if (!$user)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("user_inactive_try_again", $this->extensionName);
+			$this->addGlobalLoginErrorMessage($message);
+			$this->redirect("error");
+		}
+		
+		// Put plain password and remove database salted or plain
+		$user["password"] = $password;
+		
+		// Export to Magento
+		$success = $this->customerImport->exportFeUserAction($user);
+		
+		if ($success)
+		{
+		
+			$magentoCustomerData 	= $this->objectManager->get("MageDeveloper\\Magelink\\Magento\\Data\\CustomerData");
+			$customerId				= $magentoCustomerData->loginCustomer($login, $password);
+		
+			if ($customerId === false)
+			{
+				$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
+				$this->addGlobalLoginErrorMessage($message);
+				$this->redirect("error");
+			}
+			
+			// Login Success
+			$this->directLoginSuccessAction();
+			
+		}
+		else
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_exporting_user", $this->extensionName);
+			$this->addGlobalLoginErrorMessage($message);
+			$this->redirect("error");
+		}
 
+		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("unknown_error", $this->extensionName);
+		$this->addGlobalLoginErrorMessage($message);
+		$this->redirect("error");
+	}
+	
+	/**
+	 * Direct including of the login action when
+	 * the customers are located in Magento
+	 */
+	public function directMagentoLoginProcedureAction()
+	{
+		$login 			= $this->request->getArgument("tx-magelink-login-email");
+		$password		= $this->request->getArgument("tx-magelink-login-password");
+		$redirectOnError = null;
+		
+		$magentoCustomerData 	= $this->objectManager->get("MageDeveloper\\Magelink\\Magento\\Data\\CustomerData");
+		$customerId				= $magentoCustomerData->loginCustomer($login, $password);
+		
+		if ($customerId !== false)
+		{
+			// Customer was logged in, so we need to import user and log him in in TYPO3
+			// We try to fetch the customer from magento
+			$customerArr 	= $this->customerImport->fetchCustomerAction($login);
+			$feUserData 	= $this->customerImport->prepareFeUserData($customerArr);
+			$import 		= $this->customerImport->importFeUserAction($feUserData);
+			
+			if (!$import)
+			{
+				$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_importing_user", $this->extensionName);
+				$this->addGlobalLoginErrorMessage($message);
+				$this->redirect("error");
+			}			
+			
+			$isAuth = $this->authenticationService->auth($login, $password);
+						
+			if (!$isAuth)
+			{
+				$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
+				$this->addGlobalLoginErrorMessage($message);
+				$this->redirect("error");
+			}
+			
+			// Login Success
+			$this->directLoginSuccessAction();
+			
+		}
+		
+		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
+		$this->addGlobalLoginErrorMessage($message);
+		$this->redirect("index");
+	}
+
+	/**
+	 * Success for direct login
+	 */
+	public function directLoginSuccessAction()
+	{
+		if (!$this->settingsService->getRedirectAfterSuccessfulLogin() &&
+			$this->request->hasArgument("target") && 
+			$this->request->getArgument("target") == "Magento"
+		)
+		{
+			// MAGENTO
+			$this->redirectToUri( $this->settingsService->getMagentoUrl() );
+			exit();
+		}
+		else
+		{
+			$allowedUser = $this->authenticationService->getAllowedFrontendUser();
+			$this->redirect("success", "Login", $this->getExtensionName(), array("redirect"=>true));
+		}
+	}
+	
 	/**
 	 * Listener Action
 	 * Listens for Magento Calls
@@ -212,12 +406,13 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 
 	/**
 	 * Login Success Action
+	 * 
+	 * @param array $user User Data
 	 */
-	public function successAction()
+	public function successAction($user = null)
 	{
 		$arguments = $this->request->getArguments();
 		$redirectPid = $this->settingsService->getRedirectAfterSuccessfulLogin();
-		
 		
 		// If we receive a redirect argument
 		if ($redirectPid && $arguments["redirect"] === true)
@@ -234,8 +429,16 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 			{
 				$this->view->assign($_marker, $_argument);
 			}
+			
 		}
 	
+		// User is already logged in
+		if ($this->authenticationService->isLoggedIn())
+		{
+			$user = $this->authenticationService->getAllowedFrontendUser();
+		}
+		
+		$this->view->assign("user", $user);
 	}
 	
 	/**
@@ -262,142 +465,6 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 	public function forgotPasswordAction()
 	{
 		//
-	}
-
-	/**
-	 * Initiates the TYPO3 Login procedure
-	 */
-	public function initiateTYPO3LoginProcedureAction()
-	{
-		$requestData = $this->getRequestData();
-		
-		$isAuth = $this->authenticationService->auth($requestData[self::FORM_ID_EMAIL], $requestData[self::FORM_ID_PASSWORD]);
-
-		// User credentials are invalid!
-		if (!$isAuth)
-		{
-			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
-			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-		}
-
-		// User Array
-		$user = $this->authenticationService->getFrontendUser();
-
-		// Could not retrieve user
-		if (!$user)
-		{
-			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("user_inactive_try_again", $this->extensionName);
-			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-		}
-
-		// Put hash and email in database
-		$hash = $this->createHash( $requestData[self::FORM_ID_EMAIL] );
-
-		// If we could create a hash
-		if ($hash === null)
-		{
-			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_creating_hash", $this->extensionName);
-			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-		}
-
-		// Put hash to user		
-		$user["login_hash"] = $hash->getHash();
-		
-		// Put plain password and remove database salted or plain
-		$user["password"] = $requestData[self::FORM_ID_PASSWORD];
-
-		// SOAP Export to Magento
-		$success = $this->customerImport->exportFeUserAction($user);
-
-		if ($success)
-		{
-			/**
-			 * PREPARE DATA
-			 * AND DELIVER FINAL ENCRYPTED DATA
-			 * FOR MAGENTO LOGIN
-			 */
-
-			// Encryption/Decryption Key
-			$key = $this->settingsService->getCryptKey();
-
-			$data = array(
-				"credentials" => array(
-					"email" 	=> $requestData[self::FORM_ID_EMAIL],
-					"password" 	=> $requestData[self::FORM_ID_PASSWORD],
-					"hash"	   	=> $hash->getHash(),
-				),
-				"remote_addr"	=> \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR'),
-			);
-
-			$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
-
-			$parameters = array(
-				"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
-				"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceTYPO3/",
-				"enc"		=> base64_encode($encrypted),
-			);
-
-			header('Content-Type: application/json');
-			echo json_encode($parameters);
-			exit();
-
-		}
-		else
-		{
-			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_exporting_user", $this->extensionName);
-			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-		}
-
-		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("unknown_error", $this->extensionName);
-		$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-	}
-
-	/**
-	 * Inititates the Magento Login Procedure
-	 */
-	public function initiateMagentoLoginProcedureAction()
-	{
-		$requestData = $this->getRequestData();
-		
-		// Put hash and email in database
-		$hash = $this->createHash( $requestData[self::FORM_ID_EMAIL] );
-
-		// If we could create a hash
-		if ($hash === null)
-		{
-			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_creating_hash", $this->extensionName);
-			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
-		}
-
-		/**
-		 * PREPARE DATA
-		 * AND DELIVER FINAL ENCRYPTED DATA
-		 * FOR MAGENTO LOGIN
-		 */
-
-		// Encryption/Decryption Key
-		$key = $this->settingsService->getCryptKey();
-
-		$data = array(
-			"credentials" => array(
-				"email" 	=> $requestData[self::FORM_ID_EMAIL],
-				"password" 	=> $requestData[self::FORM_ID_PASSWORD],
-				"hash"	   	=> $hash->getHash(),
-			),
-			"remote_addr"	=> \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR'),
-		);
-
-		$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
-
-		$parameters = array(
-			"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
-			"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceMagento/",
-			"enc"		=> base64_encode($encrypted),
-		);
-
-		header('Content-Type: application/json');
-		echo json_encode($parameters);
-		exit();
 	}
 
 	/**
@@ -483,7 +550,6 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 	public function ajaxResponseAction()
 	{
 		$response = $this->getFinalResponse();
-		
 		header('Content-Type: application/json');
 		echo json_encode($response);
 		exit();
@@ -509,6 +575,145 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 				return $this->getFinalizedMagentoLoginProcedureResponse();
 		}
 		
+	}
+	
+	/**
+	 * Initiates the TYPO3 Login procedure
+	 */
+	public function initiateTYPO3LoginProcedureAction()
+	{
+		$requestData = $this->getRequestData();
+		
+		$isAuth = $this->authenticationService->auth($requestData[self::FORM_ID_EMAIL], $requestData[self::FORM_ID_PASSWORD]);
+
+		// User credentials are invalid!
+		if (!$isAuth)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("login_failed_check_credentials", $this->extensionName);
+			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+		}
+
+		// User Array
+		$user = $this->authenticationService->getFrontendUser();
+
+		// Could not retrieve user
+		if (!$user)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("user_inactive_try_again", $this->extensionName);
+			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+		}
+
+		// Put hash and email in database
+		$hash = $this->createHash( $requestData[self::FORM_ID_EMAIL] );
+
+		// If we could create a hash
+		if ($hash === null)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_creating_hash", $this->extensionName);
+			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+		}
+
+		// Put hash to user		
+		$user["login_hash"] = $hash->getHash();
+		
+		// Put plain password and remove database salted or plain
+		$user["password"] = $requestData[self::FORM_ID_PASSWORD];
+
+		// SOAP Export to Magento
+		$success = $this->customerImport->exportFeUserAction($user);
+
+		if ($success)
+		{
+			/**
+			 * PREPARE DATA
+			 * AND DELIVER FINAL ENCRYPTED DATA
+			 * FOR MAGENTO LOGIN
+			 */
+
+			// Encryption/Decryption Key
+			$key = $this->settingsService->getCryptKey();
+
+			$data = array(
+				"credentials" => array(
+					"email" 	=> $requestData[self::FORM_ID_EMAIL],
+					"password" 	=> $requestData[self::FORM_ID_PASSWORD],
+					"hash"	   	=> $hash->getHash(),
+					"requestUrl"	=> $requestData[self::FORM_ID_REQUEST_URL],
+				),
+				"remote_addr"	=> \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR'),
+				"requestUrl"	=> $requestData[self::FORM_ID_REQUEST_URL],
+			);
+
+			$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
+
+			$parameters = array(
+				"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
+				"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceTYPO3/",
+				"enc"		=> base64_encode($encrypted),
+			);
+
+			header('Content-Type: application/json');
+			echo json_encode($parameters);
+			exit();
+
+		}
+		else
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_exporting_user", $this->extensionName);
+			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+		}
+
+		$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("unknown_error", $this->extensionName);
+		$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+	}
+
+	/**
+	 * Inititates the Magento Login Procedure
+	 */
+	public function initiateMagentoLoginProcedureAction()
+	{
+		$requestData = $this->getRequestData();
+		
+		// Put hash and email in database
+		$hash = $this->createHash( $requestData[self::FORM_ID_EMAIL] );
+
+		// If we could create a hash
+		if ($hash === null)
+		{
+			$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_creating_hash", $this->extensionName);
+			$this->deliverMessage($message, \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_ERROR);
+		}
+
+		/**
+		 * PREPARE DATA
+		 * AND DELIVER FINAL ENCRYPTED DATA
+		 * FOR MAGENTO LOGIN
+		 */
+
+		// Encryption/Decryption Key
+		$key = $this->settingsService->getCryptKey();
+
+		$data = array(
+			"credentials" => array(
+				"email" 		=> $requestData[self::FORM_ID_EMAIL],
+				"password" 		=> $requestData[self::FORM_ID_PASSWORD],
+				"hash"	   		=> $hash->getHash(),
+			),
+			"remote_addr"	=> \TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('REMOTE_ADDR'),
+			"requestUrl"	=> $requestData[self::FORM_ID_REQUEST_URL],
+		);
+		
+		$encrypted = \MageDeveloper\Magelink\Utility\Crypt::encrypt($data, $key);
+
+		$parameters = array(
+			"type" 	=> \MageDeveloper\Magelink\Service\SettingsService::MESSAGE_TYPE_SUCCESS,
+			"url" 		=> $this->settingsService->getMagentoUrl()."/magelink/json/loginSourceMagento/",
+			"enc"		=> base64_encode($encrypted),
+		);
+
+		header('Content-Type: application/json');
+		echo json_encode($parameters);
+		exit();
 	}
 
 	/**
@@ -723,6 +928,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 		$allowedFormElements = array(
 			self::FORM_ID_EMAIL,
 			self::FORM_ID_PASSWORD,
+			self::FORM_ID_REQUEST_URL,
 		);
 
 		foreach ($data as $_formelement)

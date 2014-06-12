@@ -65,12 +65,12 @@ if (!defined('TYPO3_MODE')) {
 	'MageDeveloper.' . $_EXTKEY,
 	'Loginform',
 	array(
-		'Login' => 'index, ajaxPrepare, ajaxResponse, success, logout, error, forgotPassword, listener',
+		'Login' => 'index, directLogin, ajaxPrepare, ajaxResponse, success, logout, error, forgotPassword, listener',
 		'Listener' => 'ajaxPrepare, ajaxResponse',
 	),
 	// non-cacheable actions
 	array(
-		'Login' => '',
+		'Login' => 'directLogin',
 	),
 	\TYPO3\CMS\Extbase\Utility\ExtensionUtility::PLUGIN_TYPE_PLUGIN
 );

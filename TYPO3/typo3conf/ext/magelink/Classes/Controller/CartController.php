@@ -75,13 +75,12 @@ class CartController extends \MageDeveloper\Magelink\Controller\AbstractControll
 		if ($this->request->hasArgument("cart"))
 		{
 			$cart = $this->request->getArgument("cart");
-			
+
 			if (array_key_exists("items", $cart))
 			{
 				$ids = array();
 				$items = array();
-				
-				
+		
 				foreach ($cart["items"] as $_item)
 				{
 					/* @var \MageDeveloper\Magelink\Domain\Model\Cart\Item $cartItem */
@@ -108,8 +107,6 @@ class CartController extends \MageDeveloper\Magelink\Controller\AbstractControll
 			
 		}
 		
-		
-	
 	}
 	
 }

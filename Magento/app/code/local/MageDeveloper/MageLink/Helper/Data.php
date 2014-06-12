@@ -48,17 +48,15 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 	}
 	
 	/**
-	 * Gets the configuration of the
-	 * typo3 login url
+	 * Gets a complete url with params
 	 * 
+	 * @param string $baseUrl The base url
 	 * @param array $params Parameters
 	 * @return string
 	 */
-	public function getTYPO3LoginUrl($params = array())
+	public function getUrl($baseUrl, $params = array())
 	{
-		$url = Mage::getStoreConfig(MageDeveloper_MageLink_Helper_Config::XML_PATH_TYPO3_LOGIN_URL, Mage::app()->getStore());
-
-		$mark = (strpos($url, '?') === false) ? '?' : '&';
+		$mark = (strpos($baseUrl, '?') === false) ? '?' : '&';
 		$paramStr = $mark;
 		
 		foreach ($params as $_param=>$_val)
@@ -68,15 +66,16 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 		
 		$paramStr = substr($paramStr, 0, -1);
 		
-		return $url.$paramStr;
+		return $baseUrl.$paramStr;
 	}
 	
 	/**
 	 * Gets the TYPO3 Ajax Response Url
 	 * 
+	 * @param string $baseUrl Base URL
 	 * @return string
 	 */
-	public function getTYPO3AjaxResponseUrl()
+	public function getTYPO3AjaxResponseUrl($baseUrl)
 	{
 		$params = array(
 			"type"								=> "1337154991",
@@ -86,15 +85,16 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 			
 		);		
 		
-		return $this->getTYPO3LoginUrl($params);
+		return $this->getUrl($baseUrl, $params);
 	}
 
 	/**
 	 * Gets the TYPO3 Ajax Response Url
 	 * 
+	 * @param string $baseUrl Base URL
 	 * @return string
 	 */
-	public function getTYPO3AjaxPrepareUrl()
+	public function getTYPO3AjaxPrepareUrl($baseUrl)
 	{
 		$params = array(
 			"type"								=> "1337154991",
@@ -104,7 +104,7 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 			
 		);		
 		
-		return $this->getTYPO3LoginUrl($params);
+		return $this->getUrl($baseUrl, $params);
 	}
 	
 	/**
@@ -113,7 +113,7 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 	 * 
 	 * @return bool
 	 */
-	public function loginIsEnabled()
+	public function ajaxLoginListenerIsEnabled()
 	{
 		return (bool)Mage::getStoreConfig(MageDeveloper_MageLink_Helper_Config::XML_PATH_LOGIN_ENABLED, Mage::app()->getStore());
 	}	
@@ -127,6 +127,19 @@ class MageDeveloper_MageLink_Helper_Data extends Mage_Core_Helper_Abstract
 	public function getTYPO3BaseUrl()
 	{
 		$url = Mage::getStoreConfig(MageDeveloper_MageLink_Helper_Config::XML_PATH_TYPO3_BASE_URL, Mage::app()->getStore());
+		$url = rtrim($url,'/');
+		return $url;
+	}
+
+	/**
+	 * Gets the configuration of the
+	 * typo3 login url
+	 * 
+	 * @return string
+	 */	
+	public function getTYPO3LoginUrl()
+	{
+		$url = Mage::getStoreConfig(MageDeveloper_MageLink_Helper_Config::XML_PATH_TYPO3_LOGIN_URL, Mage::app()->getStore());
 		$url = rtrim($url,'/');
 		return $url;
 	}

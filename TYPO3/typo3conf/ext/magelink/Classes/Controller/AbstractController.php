@@ -76,16 +76,80 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 	 * 
 	 * @param string $message The Message
 	 * @param int $type Message Type
+	 * @param string $redirect Redirect Target
 	 * @return void
 	 */
-	public function addFlashMessage($message, $type = \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR)
+	public function addFlashMessage($message, $type = \TYPO3\CMS\Core\Messaging\FlashMessage::OK, $redirect = null)
 	{
 		$this->flashMessageContainer->add(
 				     $message,
 				     '',
 				     $type
 		);
+		
+		// TRY TO ADD THE MESSAGE TO MAGENTO ASWELL
+		if ($this->settingsService->isMagentoLocal())
+		{
+			$magento = $this->objectManager->get("MageDeveloper\\Magelink\\Magento\\Core");
+			
+			if ($magento instanceof \MageDeveloper\Magelink\Magento\Core)
+			{
+				
+				if ($magento->init())
+				{
+					switch ($type)
+					{
+						case \TYPO3\CMS\Core\Messaging\FlashMessage::OK:
+							\Mage::getSingleton('catalog/session')->addSuccess($message);
+							break;
+						case \TYPO3\CMS\Core\Messaging\FlashMessage::WARNING:
+						case \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR:
+							\Mage::getSingleton('catalog/session')->addError($message);
+							break;
+						default:
+							\Mage::getSingleton('catalog/session')->addNotice($message);
+							break; 
+					}
+					
+				}
+				
+			}		
+			
+		}
+		
+		if (!is_null($redirect))
+			$this->redirectToUri( $redirect );
+		
 	}
+
+	/**
+	 * Adds an error flash message
+	 * 
+	 * @param string $message The Message to display
+	 * @return void
+	 */
+	public function addErrorMessage($message)
+	{
+		$this->addFlashMessage($message, \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+	}
+		
+	/**
+	 * Adds an global error message for login errors
+	 * 
+	 * @param string $message The error message
+	 * @return void
+	 */	
+	public function addGlobalLoginErrorMessage($message)
+	{
+		$redirect = null;
+		if ($this->request->hasArgument("target") && $this->request->getArgument("target") == "Magento") 
+		{
+			$redirect = $this->settingsService->getMagentoLoginUrl();		
+		}
+		
+		$this->addFlashMessage($message, \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR, $redirect);
+	}	
+		
 		
 	/**
 	 * helper function to use localized strings in BlogExample controllers

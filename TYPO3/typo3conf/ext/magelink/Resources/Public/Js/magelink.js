@@ -66,14 +66,6 @@ jQuery(document).ready(function() {
 	
     prepareBody();
     tx_magelink_ajax_getcart();
-    
-    /* login form listener */
-    jQuery("form#tx-magelink-login").submit(function(e)
-    {
-        e.preventDefault();
-        tx_magelink_ajax_login_prepare(this);
-    });
-    
 });
 
 /* gets block information */
@@ -237,8 +229,9 @@ function tx_magelink_ajax_getcart_callback(data)
 
     jQuery.ajax({
         type: "POST",
-        url: "index.php",
-        params:{}, 
+        //url: "index.php",
+        params:{
+        }, 
         data: {
             'eID': 'magelinkAjax',     
             'vendorName': 'MageDeveloper',
