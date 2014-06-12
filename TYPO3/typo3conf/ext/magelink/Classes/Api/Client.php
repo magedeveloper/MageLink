@@ -97,7 +97,6 @@ class Client extends \MageDeveloper\Magelink\Domain\Model\AbstractObject
 			'trace' => true,
 			'connection_timeout' => $this->getTimeout()
 		);
-		
 		try 
 		{
 			$client = 	new \soapclient( $this->getUrl(), $params );
@@ -108,6 +107,10 @@ class Client extends \MageDeveloper\Magelink\Domain\Model\AbstractObject
 			{
 				$this->setSessionId( $sessionId );
 				return true;
+			}
+			else
+			{
+				throw new \Exception( "Could not login to webservice!" );
 			}
 			
 		} 
