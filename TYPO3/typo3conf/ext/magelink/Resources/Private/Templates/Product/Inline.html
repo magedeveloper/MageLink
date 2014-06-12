@@ -2,10 +2,6 @@
 
 <f:section name="main">
 
-    <div class="flash_messages">
-        <f:flashMessages renderMode="div" />
-    </div>
-
     <f:if condition="{products}">
         <f:then>
             <f:render partial="Product/Inline" arguments="{products:products, store:store}" />

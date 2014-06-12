@@ -4,9 +4,6 @@
 
 <f:section name="main">
 
-    <div class="flash_messages">
-        <f:flashMessages renderMode="div" />
-    </div>
     <m:category id="{currentCategory.parent}" store="{store}" as="parent_category">
         <f:if condition="{parent_category.entityId}">
             <f:then>

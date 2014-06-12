@@ -1,5 +1,9 @@
 {namespace m = MageDeveloper\Magelink\ViewHelpers}
 
+<div class="flash_messages tx-magelink-flash-messages">
+   <f:flashMessages renderMode="div" />
+</div>
+
 <f:if condition="{settings.cssFile}">
     <f:format.raw>
         <m:includeFile path="{settings.cssFile}" />

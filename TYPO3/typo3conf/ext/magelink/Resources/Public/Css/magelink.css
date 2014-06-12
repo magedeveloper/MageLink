@@ -18,6 +18,13 @@ div#tx-magelink-messages .tx-magelink-message-type-success            { backgrou
 div#tx-magelink-messages .tx-magelink-message-type-success span       { }
 div.tx-magelink-message div.tx-magelink-message-close                 { position: absolute; margin: -23px 0 0 557px; background-color: #fff; height: 15px; line-height: 15px; width: 15px; font-weight: normal; border: 2px solid; cursor: pointer; }
 
+/* flash messages in typo3 */
+div.tx-magelink-flash-messages                                        { }
+div.tx-magelink-flash-messages div.typo3-message                      { padding:5px; margin:5px 0 10px 0; }
+div.tx-magelink-flash-messages div.message-information                { background-color:#FEFAE2; color:#B89D06; border:1px solid #E7E307; }
+div.tx-magelink-flash-messages div.message-ok                         { background-color:#E2FEE2; color:#058D05; border:1px solid #058D05; }
+div.tx-magelink-flash-messages div.message-error                      { background-color:#FEE2E2; color:#B20606; border:1px solid #B20606; }
+
 /* product list */
 .tx-magelink-product-list                                             {}
 .tx-magelink-product-list ul                                          { margin:0; padding:0; }

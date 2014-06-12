@@ -3,9 +3,6 @@
 
     {namespace m = MageDeveloper\Magelink\ViewHelpers}
 
-    <div class="flash_messages">
-        <f:flashMessages renderMode="div" />
-    </div>
     <f:if condition="{settings.display_logout_form_after_login}">
         <f:if condition="{user.uid}">
             <f:alias map="{feuser: '{m:feUser.findByUid(uid:\'{user.uid}\')}'}"> 
