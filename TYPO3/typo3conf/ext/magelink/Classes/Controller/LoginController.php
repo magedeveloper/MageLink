@@ -256,7 +256,7 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 				$message = \TYPO3\CMS\Extbase\Utility\LocalizationUtility::translate("error_importing_user", $this->extensionName);
 				$this->addGlobalLoginErrorMessage($message);
 				$this->redirect("error");
-			}			
+			}
 			
 			$isAuth = $this->authenticationService->auth($login, $password);
 						
@@ -283,18 +283,24 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 	public function directLoginSuccessAction()
 	{
 		if (!$this->settingsService->getRedirectAfterSuccessfulLogin() &&
-			$this->request->hasArgument("target") && 
-			$this->request->getArgument("target") == "Magento"
+			$this->request->hasArgument("target")
 		)
 		{
+			$target = $this->request->getArgument("target");
+		
+			$uri = $this->settingsService->getMagentoUrl();
+			if ($target != "/")
+			{
+				$uri = $this->settingsService->getMagentoBaseUrl() . "/" . $target;
+			}
+			
 			// MAGENTO
-			$this->redirectToUri( $this->settingsService->getMagentoUrl() );
+			$this->redirectToUri( $uri );
 			exit();
 		}
 		else
 		{
-			$allowedUser = $this->authenticationService->getAllowedFrontendUser();
-			$this->redirect("success", "Login", $this->getExtensionName(), array("redirect"=>true));
+			$this->redirectToUri( $this->_getLoginSuccessRedirectUri() );
 		}
 	}
 	
@@ -1037,6 +1043,60 @@ class LoginController extends \MageDeveloper\Magelink\Controller\AbstractControl
 		);
 
 		return $response;	
+	
+	}
+	
+	/**
+	 * Gets the current login request params
+	 * 
+	 * @return array
+	 */	
+	protected function _getCurrentLoginRequestParams()
+	{
+		
+		if ($this->request->hasArgument("tx-magelink-login-requesturl"))
+		{
+			$pos = strpos($this->request->getArgument("tx-magelink-login-requesturl"), $this->getCurrentBaseUrl());
+		
+			// Security
+			if ($pos !== false && $pos == 0)
+			{
+				$requestUrl = $this->request->getArgument("tx-magelink-login-requesturl");
+				$parsed = parse_url($requestUrl);
+				
+				if (isset($parsed["query"]))
+				{
+					parse_str($parsed["query"], $params);
+					
+					if (is_array($params))
+					{
+						return $params;
+					}				
+				}
+			}
+		}
+		
+		return array();
+	}
+	
+	protected function _getLoginSuccessRedirectUri()
+	{
+		$action = "success";
+		$controller = "Login";
+		$extensionName = $this->getExtensionName();
+		$pluginName = $this->getPluginName();
+
+		$uriBuilder = $this->controllerContext->getUriBuilder();
+
+		$params = $this->_getCurrentLoginRequestParams();
+
+		$redirect = $uriBuilder->reset()
+								->setArguments($params)
+								->setCreateAbsoluteUri(true)
+								->setAddQueryString(true)
+								->uriFor($action, array(), $controller, $extensionName, $pluginName);
+	
+		return $redirect;
 	
 	}
 	

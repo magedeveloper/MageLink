@@ -150,6 +150,27 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 		$this->addFlashMessage($message, \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR, $redirect);
 	}	
 		
+	/**
+	 * Gets the current base url
+	 * 
+	 * @return \string
+	 */
+	public function getCurrentBaseUrl()
+	{
+		$uriBuilder = clone $this->getControllerContext()->getUriBuilder();
+		$uriBuilder->reset();
+		$uriBuilder->setCreateAbsoluteUri(true);
+		$uri = $uriBuilder->uriFor();
+		
+		$parsed = parse_url($uri);
+
+		$url = $parsed["scheme"] . '://' . rtrim($parsed["host"], '/') . '/' . ltrim($parsed["path"], '/');
+
+		$base = basename($url);
+		$url = str_replace($base, "", $url);
+
+		return $url;
+	}	
 		
 	/**
 	 * helper function to use localized strings in BlogExample controllers
