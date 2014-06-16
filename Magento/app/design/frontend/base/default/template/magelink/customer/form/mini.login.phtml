@@ -1,0 +1,32 @@
+<?php
+/**
+ * Customer login form template
+ *
+ * @see MageDeveloper_MageLink_Block_Customer_Form_Login
+ */
+?>
+<form action="<?php echo Mage::helper("magelink/login")->getPostActionUrl() ?>" method="post" id="login-form">
+	<ul class="form-list tx-magelink-login">
+		<li>
+			<label for="email" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+			<div class="input-box">
+				<input type="text" name="<?php echo  Mage::helper("magelink/login")->getFormNameEmail() ?>" value="<?php echo $this->escapeHtml($this->getUsername()) ?>" id="email" class="input-text required-entry validate-email" title="<?php echo $this->__('Email Address') ?>" />
+			</div>
+		</li>
+		<li>
+			<label for="pass" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+			<div class="input-box">
+				<input type="password" name="<?php echo Mage::helper("magelink/login")->getFormNamePassword() ?>" class="input-text required-entry validate-password" id="pass" title="<?php echo $this->__('Password') ?>" />
+			</div>
+		</li>
+		<li>
+			<div class="login_button">
+				<button type="submit" class="button" title="<?php echo $this->__('Login') ?>" name="send" id="send2"><span><span><?php echo $this->__('Login') ?></span></span></button>
+				<a href="<?php echo $this->getForgotPasswordUrl() ?>" class="f-right"><?php echo $this->__('Forgot Your Password?') ?></a>
+			</div>
+		</li>
+		<?php echo $this->getChildHtml('form.additional.info'); ?>
+	</ul>
+	<p class="required"><?php echo $this->__('* Required Fields') ?></p>
+	<input type="hidden" name="tx_magelink_loginform[target]" id="target" value="/" />
+</form>

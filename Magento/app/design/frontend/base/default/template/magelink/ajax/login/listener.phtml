@@ -1,0 +1,26 @@
+<script type="text/javascript">
+	var baseUrl 			= '<?php echo $this->getBaseUrl(); ?>';
+	var skinUrl 			= '<?php echo $this->getSkinUrl(); ?>';
+	var ajaxPrepareUrl		= '<?php echo $this->getUrl("magelink/login/ajaxPrepare"); ?>';
+	var ajaxResponseUrl 	= '<?php echo Mage::helper("magelink")->getTYPO3AjaxResponseUrl(); ?>';
+	
+	jQuery.noConflict();
+	jQuery(document).ready(function() {
+	
+		var initLogin = false;
+		
+		/* login form listener */
+		jQuery("form#login-form").on("submit", function(e)
+		{
+		   	if (initLogin === false && dataForm.validator.validate() == true)
+		   	{
+				prepareLogin();
+				initLogin = true;
+			}
+			
+			e.preventDefault();
+		});
+	    
+	});
+</script>
+LISTENER
