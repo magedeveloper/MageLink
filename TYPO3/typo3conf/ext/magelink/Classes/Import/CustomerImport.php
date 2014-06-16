@@ -135,6 +135,7 @@ class CustomerImport extends \MageDeveloper\Magelink\Import\AbstractImport
 	/**
 	 * Prepares frontend user data from magento customer
 	 * data
+	 * Magento Customer => TYPO3 fe_user
 	 * 
 	 * @param \array $customer Customer Data
 	 * @return \array Frontend User Data
@@ -216,6 +217,7 @@ class CustomerImport extends \MageDeveloper\Magelink\Import\AbstractImport
 
 	/**
 	 * Prepares customer data from fe_user data
+	 * TYPO3 fe_user => Magento Customer
 	 *
 	 * @param \array $fe_user fe_user data
 	 * @return \array Magento Customer Data
