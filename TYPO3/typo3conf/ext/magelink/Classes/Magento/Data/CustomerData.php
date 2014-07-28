@@ -103,8 +103,9 @@ class CustomerData extends \MageDeveloper\Magelink\Magento\Data\AbstractData
 				{
 					$session = \Mage::getSingleton('customer/session');
 					$session->setCustomerAsLoggedIn($customer);
-					
-					return (int)$customer->getId();
+
+					if ($session->isLoggedIn())
+						return (int)$customer->getId();
 				}
 				
 			} catch (\Exception $e) {
