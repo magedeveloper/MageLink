@@ -76,13 +76,13 @@ class CustomerData extends \MageDeveloper\Magelink\Magento\Data\AbstractData
 
 		throw new \Exception("Could not establish a magento connection");
 	}
-	
+
 	/**
 	 * Login a customer on magento
-	 * 
+	 *
 	 * @param string $email E-Mail
 	 * @param string $password Password
-	 * @throws Exception
+	 * @throws \Exception
 	 * @return int Customer ID
 	 */
 	public function loginCustomer($email, $password)
@@ -102,6 +102,7 @@ class CustomerData extends \MageDeveloper\Magelink\Magento\Data\AbstractData
 				if ($customer instanceof \Mage_Customer_Model_Customer && $customer->getId())
 				{
 					$session = \Mage::getSingleton('customer/session');
+					$session->login($email, $password);
 					$session->setCustomerAsLoggedIn($customer);
 
 					if ($session->isLoggedIn())
